@@ -74,9 +74,9 @@ def main():
     tabla = {}
     with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
-    habitac_alquiladas(tabla)
-
-    st.bar_chart({"Cantidad": list(habitaciones.values())}, x=list(habitaciones.keys()))
+    source = habitac_alquiladas(tabla)
+    #st.bar_chart({"Cantidad": list(habitaciones.values())}, x=list(habitaciones.keys()))
+    st.bar_chart(source, x="Tipo de habitacion", y="Cantidad de habitaciones", color="site", stack=False)
     return 0
 
 main()
