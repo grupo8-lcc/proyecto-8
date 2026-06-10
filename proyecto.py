@@ -17,6 +17,11 @@ st.write ("Empecemos a trabajar en equipo")
 
 # Procesam_dataset:
 def procesam_dataset(f):
+    """procesam_dataset: FILE -> Dict(List(Str))
+    procesam_dataset recibe un archivo, y lo procesa de la siguiente forma.
+    Crea un diccionario vacío, donde se guardaran las categorias como listas.
+    La funcion recorre el archivo linea por linea, guardando en primer lugar las categorias,
+    y luego los datos de cada linea en cada categoria correspondiente."""
     tabla = {}
     primer_linea=f.readline()
     lista_indice=primer_linea.split(",")
@@ -36,7 +41,13 @@ def procesam_dataset(f):
 # PREGUNTA ESTATICA A RESOLVER: ¿QUE TIPOS DE HABITACIONES SON LAS MAS ALQUILADAS?
 
 # habitac_alquiladas:
-def habitac_alquiladas(dataset:dict):->tuple
+def habitac_alquiladas(dataset:dict)->dict:
+    """habitac_alquiladas: Dict(List(Str)) -> Dict(Int)
+    habitac_alquiladas recibe la estructura con la que se representa el dataset,
+    y devuelve un diccionario, que tiene la cantidad de cada tipo de habitacion.
+    EJEMPLOS:
+        habitac_alquiladas({"room_type":["Private_room", "Hotel_room", "Entire_home/apt"]}) -> {"Entire_home/apt":1, "Private_room":1, "Shared_room":0, "Hotel_room":1}
+        habitac_alquiladas(habitac_alquiladas({"room_type":[]}) -> {"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}) """"
     dicc_habita={"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}
     for habitaciones in dataset["room_type"]:
         if  habitaciones=="Entire home/apt":
@@ -58,8 +69,10 @@ def habitac_alquiladas(dataset:dict):->tuple
 #dataset_airbnb.csv
 # Funcion Principal:
 def main():
+    """main es la funcion principal de nuestro programa, es la encargada
+    del control del mismo."""
     tabla = {}
-    with open("dataset_airbnb.csv") as f:
+    with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     habitac_alquiladas(tabla)
 
