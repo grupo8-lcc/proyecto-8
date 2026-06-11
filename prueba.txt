@@ -1,4 +1,4 @@
 id,name,host_id,host_name,neighbourhood_group,neighbourhood,latitude,longitude,room_type,price,minimum_nights,number_of_reviews,last_review,reviews_per_month,calculated_host_listings_count,availability_365,number_of_reviews_ltm,license
-3031067,Apartamento inteiro,15438799,Gaetano,,Campo Grande,-22.92161,-43.55507,Entire home/apt,,5,0,,,1,363,0,
+3031067,Apartamento inteiro,15438799,Gaetano,,Campo Grande,-22.92161,-43.55507,Private room,,5,0,,,1,363,0,
 689765597876490315,In Rio - aconchegante e prático.,47584281,Renato Silva Vianna,,Jacarepaguá,-22.97187,-43.41419,Entire home/apt,665.0,1,0,,,160,365,0,
 1408643944925897132,Apê no coração de Copacabana,692072943,Leonidio,,Copacabana,-22.9649,-43.17818,Entire home/apt,530.0,1,0,,,1,365,0,
