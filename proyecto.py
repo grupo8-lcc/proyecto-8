@@ -76,20 +76,15 @@ def main():
     with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
-    #st.bar_chart({"Cantidad": list(source.values())}, x=list(source.keys()))
-    # ->>>st.bar_chart({"Cantidad": list(source.values())})
+    # primer intento ->>>st.bar_chart({"Cantidad": list(source.values())})
     fig, ax = plt.subplots()
-    #fruits = ['apple', 'blueberry', 'cherry', 'orange']
-    #counts = [40, 100, 30, 55]
     bar_labels = source.keys()
     bar_colors = ['tab:red', 'tab:blue', 'tab:pink', 'tab:orange']
     ax.bar(source.keys(), source.values(), label=bar_labels, color=bar_colors)
     ax.set_ylabel('Cantidad de alquileres')
     ax.set_title('Cantidad de alquileres por tipo de habitacion')
     ax.legend(title='Tipo de habitacion')
-    #plt.show()
     st.pyplot(fig)
-    #st.bar_chart(source, x="Tipo de habitacion", y="Cantidad de habitaciones", color="site", stack=False)
     return 0
 
 main()
