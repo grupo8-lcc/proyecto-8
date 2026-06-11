@@ -81,7 +81,7 @@ def main():
     fig, ax = plt.subplots()
     #fruits = ['apple', 'blueberry', 'cherry', 'orange']
     #counts = [40, 100, 30, 55]
-    bar_labels = ['red', 'blue', '_red', 'orange']
+    bar_labels = ['red', 'blue', 'pink', 'orange']
     bar_colors = ['tab:red', 'tab:blue', 'tab:red', 'tab:orange']
     ax.bar(source.keys(), source.values(), label=bar_labels, color=bar_colors)
     ax.set_ylabel('Cantidad de alquileres')
