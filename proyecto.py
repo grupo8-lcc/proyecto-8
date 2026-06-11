@@ -87,7 +87,8 @@ def main():
     ax.set_ylabel('Cantidad de alquileres')
     ax.set_title('Cantidad de alquileres por tipo de habitacion')
     ax.legend(title='Tipo de habitacion')
-    plt.show()
+    #plt.show()
+    st.pyplot(fig)
     #st.bar_chart(source, x="Tipo de habitacion", y="Cantidad de habitaciones", color="site", stack=False)
     return 0
 
