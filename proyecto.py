@@ -76,7 +76,7 @@ def main():
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
     #st.bar_chart({"Cantidad": list(source.values())}, x=list(source.keys()))
-    st.bar_chart({"Cantidad": list(source.values()), "Habitaciones":list(source.keys())})
+    st.bar_chart({"Cantidad": list(source.values())})
     #st.bar_chart(source, x="Tipo de habitacion", y="Cantidad de habitaciones", color="site", stack=False)
     return 0
 
