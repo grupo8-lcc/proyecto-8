@@ -30,6 +30,7 @@ def procesam_dataset(f):
         tabla[indice]=[]
 
     long=len(lista_indice)-1
+
     
     for linea in f:
         lista_datos=linea.split(",")
@@ -50,6 +51,7 @@ def habitac_alquiladas(dataset:dict)->dict:
         habitac_alquiladas({"room_type":["Private_room", "Hotel_room", "Entire_home/apt"]}) -> {"Entire_home/apt":1, "Private_room":1, "Shared_room":0, "Hotel_room":1}
         habitac_alquiladas(habitac_alquiladas({"room_type":[]}) -> {"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}) """
     dicc_habita={"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}
+    #corregir el for
     for habitaciones in dataset["room_type"]:
         if  habitaciones=="Entire home/apt":
             dicc_habita["Entire_home/apt"]+=1
@@ -73,7 +75,7 @@ def main():
     """main es la funcion principal de nuestro programa, es la encargada
     del control del mismo."""
     tabla = {}
-    with open("dataset_airbnb.csv") as f:
+    with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
     # primer intento ->>>st.bar_chart({"Cantidad": list(source.values())})
