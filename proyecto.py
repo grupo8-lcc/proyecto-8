@@ -41,7 +41,7 @@ def procesam_dataset(f):
             lista_datos = linea.split(",")
             for x in range(0,long):
                 tabla[lista_indice[x]].append(lista_datos[x])
-            actual_linea = []"""
+            actual_linea = []
         if long_ldatos<long:
             #f_copia = f
             car_actual = f.read(1)
@@ -51,10 +51,8 @@ def procesam_dataset(f):
                     lista_datos.append("")
                     long_ldatos+=1
                 #f_copia = f.seek(1, 1)
-                car_actual = f.read(1)
-
-                
-        else:
+                car_actual = f.read(1)"""     
+        if len(lista_datos)>=long:
             lista_datos = linea.split(",")
             for x in range(0,long):
                 tabla[lista_indice[x]].append(lista_datos[x])
