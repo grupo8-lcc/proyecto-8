@@ -87,7 +87,7 @@ def main():
     """main es la funcion principal de nuestro programa, es la encargada
     del control del mismo."""
     tabla = {}
-    with open("prueba.txt") as f:
+    with open("dataset_airbnb.csv") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
     # primer intento ->>>st.bar_chart({"Cantidad": list(source.values())})
