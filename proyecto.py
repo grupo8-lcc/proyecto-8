@@ -45,7 +45,7 @@ def procesam_dataset(f):
         if long_ldatos<long:
             #f_copia = f
             car_actual = f.read(1)
-            while(car_actual!="\n"):
+            while(car_actual!='\n'):
                 lista_datos[long_ldatos-1] =lista_datos[long_ldatos-1]+car_actual
                 if car_actual == ",":
                     lista_datos.append("")
