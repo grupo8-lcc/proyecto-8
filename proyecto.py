@@ -42,7 +42,7 @@ def procesam_dataset(f):
             for x in range(0,long):
                 tabla[lista_indice[x]].append(lista_datos[x])
             actual_linea = []"""
-        if len(long_ldatos)<long:
+        if long_ldatos<long:
             f_copia = f
             car_actual = f_copia.read(1)
             while(f_copia!="\n"):
