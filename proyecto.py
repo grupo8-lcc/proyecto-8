@@ -30,36 +30,25 @@ def procesam_dataset(f):
         tabla[indice] = []
 
     long = len(lista_indice)-1
-    linea_actual =""
-    
+    linea_aux =""
     for linea in f:
+        linea_aux=linea_aux+linea
+        lista_datos=linea_aux.split(",")
+        if long==len(lista_datos):
+            for x in range(0,long):
+                tabla[lista_indice[x]].append(lista_datos[x])
+            linea_aux=""
+    """for linea in f:
         if linea_actual:
             linea_actual+= " ".strip()
         else:
             linea_actual = linea_actual.strip()
         lista_datos = linea.split(",")
-        long_ldatos = len(lista_datos)
-        """if len(lista_datos)<long:
-            actual_linea = actual_linea[(len(actual_linea)-1)].append(lista_datos[0])
-        else:
-            lista_datos = linea.split(",")
-            for x in range(0,long):
-                tabla[lista_indice[x]].append(lista_datos[x])
-            actual_linea = []
-        if long_ldatos<long:
-            #f_copia = f
-            car_actual = f.read(1)
-            while(car_actual!='\n'):
-                lista_datos[long_ldatos-1] =lista_datos[long_ldatos-1]+car_actual
-                if car_actual == ",":
-                    lista_datos.append("")
-                    long_ldatos+=1
-                #f_copia = f.seek(1, 1)
-                car_actual = f.read(1)"""     
+        long_ldatos = len(lista_datos)    
         if len(lista_datos)>=long:
             lista_datos = linea.split(",")
             for x in range(0,long):
-                tabla[lista_indice[x]].append(lista_datos[x])
+                tabla[lista_indice[x]].append(lista_datos[x])"""
         
     return tabla
 
