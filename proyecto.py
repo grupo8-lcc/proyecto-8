@@ -50,7 +50,7 @@ def procesam_dataset(f):
                 if car_actual == ",":
                     lista_datos.append("")
                     long_ldatos+=1
-                f_copia = f_copia.seek(1,1)
+                f_copia = f.seek(1,1)
                 
         else:
             lista_datos = linea.split(",")
