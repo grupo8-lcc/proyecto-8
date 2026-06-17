@@ -34,8 +34,6 @@ def procesam_dataset(f):
     
     for linea in f:
         lista_datos=linea.split(",")
-        while len(lista_datos) < long:
-            lista_datos= (linea.append(readline)).split(",")
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
     
@@ -52,17 +50,11 @@ def habitac_alquiladas(dataset:dict)->dict:
     EJEMPLOS:
         habitac_alquiladas({"room_type":["Private_room", "Hotel_room", "Entire_home/apt"]}) -> {"Entire_home/apt":1, "Private_room":1, "Shared_room":0, "Hotel_room":1}
         habitac_alquiladas(habitac_alquiladas({"room_type":[]}) -> {"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}) """
+    
     dicc_habita={"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}
-    #corregir el for
+
     for habitaciones in dataset["room_type"]:
-        if  habitaciones=="Entire home/apt":
-            dicc_habita["Entire_home/apt"]+=1
-        elif habitaciones=="Private room":
-            dicc_habita["Private_room"]+=1
-        elif habitaciones=="Shared room":
-            dicc_habita["Shared_room"]+=1
-        else:
-            dicc_habita["Hotel room"]+=1
+        dicc_habita[habitaciones]+=1
 
     return dicc_habita
 
@@ -80,6 +72,7 @@ def main():
     with open("dataset_airbnb.csv") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
+    #grafica de barras de las habitaciones alquiladas
     # primer intento ->>>st.bar_chart({"Cantidad": list(source.values())})
     fig, ax = plt.subplots()
     bar_labels = source.keys()
@@ -89,6 +82,9 @@ def main():
     ax.set_title('Cantidad de alquileres por tipo de habitacion')
     ax.legend(title='Tipo de habitacion')
     st.pyplot(fig)
+    #slider para elegir la cantidad de personas de la busqueda
+    valor = st.slider("Cantidad de inquilinos", min_value=1, max_value=100, value=0)
+    st.write("El número elegido es:", valor)
     return 0
 
 main()
