@@ -38,17 +38,6 @@ def procesam_dataset(f):
             for x in range(0,long):
                 tabla[lista_indice[x]].append(lista_datos[x])
             linea_aux=""
-    """for linea in f:
-        if linea_actual:
-            linea_actual+= " ".strip()
-        else:
-            linea_actual = linea_actual.strip()
-        lista_datos = linea.split(",")
-        long_ldatos = len(lista_datos)    
-        if len(lista_datos)>=long:
-            lista_datos = linea.split(",")
-            for x in range(0,long):
-                tabla[lista_indice[x]].append(lista_datos[x])"""
         
     return tabla
 
@@ -89,7 +78,7 @@ def main():
     """main es la funcion principal de nuestro programa, es la encargada
     del control del mismo."""
     tabla = {}
-    with open("dataset_airbnb.csv") as f:
+    with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
     # primer intento ->>>st.bar_chart({"Cantidad": list(source.values())})
