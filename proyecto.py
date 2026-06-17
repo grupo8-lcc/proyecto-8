@@ -43,14 +43,16 @@ def procesam_dataset(f):
                 tabla[lista_indice[x]].append(lista_datos[x])
             actual_linea = []"""
         if long_ldatos<long:
-            f_copia = f
-            car_actual = f_copia.read(1)
-            while(f_copia!="\n"):
+            #f_copia = f
+            car_actual = f.read(1)
+            while(car_actual!="\n"):
                 lista_datos[long_ldatos-1] =lista_datos[long_ldatos-1]+car_actual
                 if car_actual == ",":
                     lista_datos.append("")
                     long_ldatos+=1
-                f_copia = f.seek(1,1)
+                #f_copia = f.seek(1, 1)
+                car_actual = f.read(1)
+
                 
         else:
             lista_datos = linea.split(",")
