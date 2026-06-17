@@ -24,21 +24,39 @@ def procesam_dataset(f):
     La funcion recorre el archivo linea por linea, guardando en primer lugar las categorias,
     y luego los datos de cada linea en cada categoria correspondiente."""
     tabla = {}
-    primer_linea=f.readline()
-    lista_indice=primer_linea.split(",")
+    primer_linea = f.readline()
+    lista_indice = primer_linea.split(",")
     for indice in lista_indice:
-        tabla[indice]=[]
+        tabla[indice] = []
 
-    long=len(lista_indice)-1
-
+    long = len(lista_indice)-1
+    actual_linea = []
     
     for linea in f:
-        lista_datos=linea.split(",")
-        while len(lista_datos) < long:
-            lista_datos= (linea.append(readline)).split(",")
-        for x in range(0,long):
-            tabla[lista_indice[x]].append(lista_datos[x])
-    
+        lista_datos = linea.split(",")
+        long_ldatos = len(lista_datos)
+        """if len(lista_datos)<long:
+            actual_linea = actual_linea[(len(actual_linea)-1)].append(lista_datos[0])
+        else:
+            lista_datos = linea.split(",")
+            for x in range(0,long):
+                tabla[lista_indice[x]].append(lista_datos[x])
+            actual_linea = []"""
+        if len(long_ldatos)<long:
+            f_copia = f
+            car_actual = f_copia.read(1)
+            while(f_copia!="\n"):
+                lista_datos[long_ldatos-1] =lista_datos[long_ldatos-1]+car_actual
+                if car_actual == ",":
+                    lista_datos.append("")
+                    long_ldatos+=1
+                f_copia = f_copia.seek(1,1)
+                
+        else:
+            lista_datos = linea.split(",")
+            for x in range(0,long):
+                tabla[lista_indice[x]].append(lista_datos[x])
+        
     return tabla
 
 
@@ -55,14 +73,15 @@ def habitac_alquiladas(dataset:dict)->dict:
     dicc_habita={"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}
     #corregir el for
     for habitaciones in dataset["room_type"]:
-        if  habitaciones=="Entire home/apt":
+        dicc_habita[habitaciones]+=1
+        """if  habitaciones=="Entire home/apt":
             dicc_habita["Entire_home/apt"]+=1
         elif habitaciones=="Private room":
             dicc_habita["Private_room"]+=1
         elif habitaciones=="Shared room":
             dicc_habita["Shared_room"]+=1
         else:
-            dicc_habita["Hotel room"]+=1
+            dicc_habita["Hotel room"]+=1"""
 
     return dicc_habita
 
