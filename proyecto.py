@@ -1,6 +1,7 @@
 import streamlit as st 
 import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 st.title ("Proyecto Grupal Programacion")
 st.write ("Empecemos a trabajar en equipo")
 
@@ -105,29 +106,30 @@ def main():
     st.write("", valor)
     dicc_noches=Noches(valor, tabla)
     #st.map(data=dicc_noches, latitude="latitude", longitude="longitude", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
-    fig, ax = plt.subplots(figsize=(6,6))
-    # Configurar mapa centrado en Rio de Janeiro
-    m = Basemap(projection='merc',
-                llcrnrlat=-25, urcrnrlat=-20,   # límites de latitud
-                llcrnrlon=-45, urcrnrlon=-40,   # límites de longitud
-                resolution='i', ax=ax)
+    
+    # Crear figura con proyección Mercator
+    fig = plt.figure(figsize=(6,6))
+    ax = plt.axes(projection=ccrs.Mercator())
 
-    m.drawcoastlines()
-    m.drawcountries()
-    m.drawmapboundary(fill_color='lightblue')
-    m.fillcontinents(color='lightgreen', lake_color='lightblue')
-    # Lista de coordenadas
+    # Definir límites alrededor de Río de Janeiro
+    ax.set_extent([-45, -40, -25, -20], crs=ccrs.PlateCarree())
+
+    # Agregar costas y países
+    ax.add_feature(cfeature.COASTLINE)
+    ax.add_feature(cfeature.BORDERS, linestyle=':')
+    ax.add_feature(cfeature.LAND, facecolor='lightgreen')
+    ax.add_feature(cfeature.OCEAN, facecolor='lightblue')
+
+    # Varias coordenadas (ejemplo: puntos de alquileres)
     latitudes = dicc_noches["latitude"]
     longitudes = dicc_noches["longitude"]
 
-    # Convertir a coordenadas del mapa
-    x, y = m(longitudes, latitudes)
-
-    # Dibujar puntos
-    m.scatter(x, y, marker='o', color='red', zorder=5)
+    # Dibujar todos los puntos en el mapa
+    ax.plot(longitudes, latitudes, marker='o', color='red',
+            markersize=6, linestyle='None', transform=ccrs.PlateCarree())
 
     # Mostrar en Streamlit
     st.pyplot(fig)
-    return 0
+        return 0
 
 main()
