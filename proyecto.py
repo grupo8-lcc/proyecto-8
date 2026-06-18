@@ -98,7 +98,9 @@ def main():
     """main es la funcion principal de nuestro programa, es la encargada
     del control del mismo."""
     tabla = {}
-    with open("dataset_airbnb.csv") as f:
+    #tenemos problemas para leer el data set pero no sabemos cual ya distinguimos los dos casos problematicos
+    #y los resolvimos se puede ver en el archivo de prueba.txt pero sin embargo sigue tirando un error de index
+    with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
 
