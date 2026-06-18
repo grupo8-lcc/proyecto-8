@@ -30,16 +30,7 @@ def procesam_dataset(f):
         tabla[indice] = []
 
     long = len(lista_indice)-1
-    linea_aux =""
-    """for linea in f:
-        linea_aux=linea_aux+linea
-        lista_datos=linea_aux.split(",")
-        if long==len(lista_datos):
-            for x in range(0,long):
-                tabla[lista_indice[x]].append(lista_datos[x])
-            linea_aux=""
-            linea_aux = ""
-            """
+
     for linea in f:
         lista_datos=linea.split(",")
         for x in range(0,long):
