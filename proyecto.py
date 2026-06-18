@@ -57,6 +57,22 @@ def habitac_alquiladas(dataset:dict)->dict:
 
     return dicc_habita
 
+def Noches(num:int, dataset:dict)-> dict[str list[str]]:
+
+    dicc_alquileres={"latitude"=[], "longitude"=[]}
+    index_de_alquiler=[]
+    num=str(num)
+    i=0
+    for noches in dataset[minimum_nights]:
+        if noches==num:
+            index_de_alquiler.append(i)
+        i+=1
+    
+    for x in index_de_alquiler:
+        dicc_alquileres["latitude"].append(dataset["latitude"][x])
+        dicc_alquileres["longitude"].append(dataset["longitude"][x])
+    
+    return dicc_alquileres
 
 
 
@@ -71,6 +87,7 @@ def main():
     with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
+
     #grafica de barras de las habitaciones alquiladas
     # primer intento ->>>st.bar_chart({"Cantidad": list(source.values())})
     fig, ax = plt.subplots()
@@ -81,9 +98,11 @@ def main():
     ax.set_title('Cantidad de alquileres por tipo de habitacion')
     ax.legend(title='Tipo de habitacion')
     st.pyplot(fig)
+
     #slider para elegir la cantidad de personas de la busqueda
-    valor = st.slider("Cantidad de inquilinos", min_value=1, max_value=100, value=0)
-    st.write("El número elegido es:", valor)
+    valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=100, value=0)
+    st.write("", valor)
+    noches(valor, tabla)
 
     return 0
 
