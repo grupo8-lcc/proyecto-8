@@ -87,7 +87,7 @@ def main():
     """main es la funcion principal de nuestro programa, es la encargada
     del control del mismo."""
     tabla = {}
-    with open("dataset_airbnb.csv") as f:
+    with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
 
