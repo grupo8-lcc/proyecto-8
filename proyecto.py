@@ -31,11 +31,22 @@ def procesam_dataset(f):
 
     long = len(lista_indice)-1
 
+    #pudimos corregir el problema de los saltos de lineas en las filas pero nos encontramos con otro problema
+    #ya que dentro de algunos nombres hay comas lo que implica que el programa lo lee como un dato extra
+    # y eso rompe la lectura del dataset
     for linea in f:
+        #para armas la linea en caso que este dividida en distintas filas
         while linea[-2]!="," and linea[-1]=="\n":
             linea=linea+f.readline()
             print(linea)
         lista_datos=linea.split(",")
+        #para ignorar las comas en caso que un nombre tenga una coma
+        primer_comilla=linea.find('"')
+        fin_comilla=linea.find('"', primer_comilla+1)
+        if primer_comilla!=-1 and fin_comilla!=-1:
+            nombre=linea[primer_comilla+1:fin_comilla]
+            lista_datos=lista_datos[:1]+[nombre]+lista_datos[3:]
+        #agrega los datos al diccionario 
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
 
