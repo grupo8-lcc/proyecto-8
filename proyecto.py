@@ -57,9 +57,9 @@ def habitac_alquiladas(dataset:dict)->dict:
 
     return dicc_habita
 
-def Noches(num:int, dataset:dict):
+def Noches(num:int, dataset:dict)->dict{str:list[str]}:
 
-    dicc_alquileres={"latitude"=[], "longitude"=[]}
+    dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
     num=str(num)
     i=0
