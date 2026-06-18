@@ -63,7 +63,7 @@ def Noches(num:int, dataset:dict)->dict:
     index_de_alquiler=[]
     num=str(num)
     i=0
-    for noches in dataset[minimum_nights]:
+    for noches in dataset["minimum_nights"]:
         if noches==num:
             index_de_alquiler.append(i)
         i+=1
