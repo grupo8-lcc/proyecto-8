@@ -69,7 +69,7 @@ def main():
     """main es la funcion principal de nuestro programa, es la encargada
     del control del mismo."""
     tabla = {}
-    with open("dataset_airbnb.csv") as f:
+    with open("prueba.txt") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
     #grafica de barras de las habitaciones alquiladas
@@ -85,6 +85,7 @@ def main():
     #slider para elegir la cantidad de personas de la busqueda
     valor = st.slider("Cantidad de inquilinos", min_value=1, max_value=100, value=0)
     st.write("El número elegido es:", valor)
+
     return 0
 
 main()
