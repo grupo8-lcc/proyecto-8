@@ -35,17 +35,19 @@ def procesam_dataset(f):
     #ya que dentro de algunos nombres hay comas lo que implica que el programa lo lee como un dato extra
     # y eso rompe la lectura del dataset
     for linea in f:
-        #para armas la linea en caso que este dividida en distintas filas
+        #para armar la linea en caso que este dividida en distintas filas
         while linea[-2]!="," and linea[-1]=="\n":
             linea=linea+f.readline()
             print(linea)
-        lista_datos=linea.split(",")
         #para ignorar las comas en caso que un nombre tenga una coma
         primer_comilla=linea.find('"')
         fin_comilla=linea.find('"', primer_comilla+1)
         if primer_comilla!=-1 and fin_comilla!=-1:
             nombre=linea[primer_comilla+1:fin_comilla]
-            lista_datos=lista_datos[:1]+[nombre]+lista_datos[3:]
+            nombre=nombre.replace(",","")
+            linea=linea[:primer_comilla+1]+nombre+linea[fin_comilla:]
+        lista_datos=linea.split(",")
+
         #agrega los datos al diccionario 
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
@@ -72,7 +74,11 @@ def habitac_alquiladas(dataset:dict)->dict:
     return dicc_habita
 
 def Noches(num:int, dataset:dict)->dict:
-
+    """Noches-> int, disct{str:list[str]}
+    Noches recibe el numero que llega por el slider y recorre la seccion de minimum_nigths del diccionario
+    que representa el dataset, de ahi busca cuando el numero del slider coincide con la value guarda un indice en una lista
+    que seria el numero del airbnb que se esta guardando. Luego recorre esa lista accediendo a la latitud y longitud
+    de cada airbnb guardado con su posicion para guardarlas en otro diccionario el cual sera returneado"""
     dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
     num=str(num)
@@ -88,10 +94,6 @@ def Noches(num:int, dataset:dict)->dict:
     
     return dicc_alquileres
 
-
-
-# Graf_p_est:
-
 #dataset_airbnb.csv
 # Funcion Principal:
 def main():
@@ -105,7 +107,6 @@ def main():
     source = habitac_alquiladas(tabla)
 
     #grafica de barras de las habitaciones alquiladas
-    # primer intento ->>>st.bar_chart({"Cantidad": list(source.values())})
     fig, ax = plt.subplots()
     bar_labels = source.keys()
     bar_colors = ['tab:red', 'tab:blue', 'tab:pink', 'tab:orange']
@@ -119,7 +120,9 @@ def main():
     valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=100, value=0)
     st.write("", valor)
     dicc_noches=Noches(valor, tabla)
-    #st.map(data=dicc_noches, latitude="latitude", longitude="longitude", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
+    #pudimos poner el slider e intentamos usar el mapa con el archivo de prueba pero aunque no tiraba ningun error
+    #el mapa igual no se mostraba
+    st.map(data=dicc_noches, latitude="latitude", longitude="longitude", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
 
     return 0
 
