@@ -63,17 +63,6 @@ def habitac_alquiladas(dataset:dict)->dict:
 
     for habitaciones in dataset["room_type"]:
         dicc_habita[habitaciones]+=1
-<<<<<<< HEAD
-=======
-        """if  habitaciones=="Entire home/apt":
-            dicc_habita["Entire_home/apt"]+=1
-        elif habitaciones=="Private room":
-            dicc_habita["Private_room"]+=1
-        elif habitaciones=="Shared room":
-            dicc_habita["Shared_room"]+=1
-        else:
-            dicc_habita["Hotel room"]+=1"""
->>>>>>> 0946da5f1fa344229b6ae0321ac8dac16634a563
 
     return dicc_habita
 
