@@ -32,7 +32,7 @@ def procesam_dataset(f):
     long = len(lista_indice)-1
 
     for linea in f:
-        while linea[-2]!=",":
+        while linea[-2]!="," and linea[-1]=="\n":
             linea=linea+f.readline()
             print(linea)
         lista_datos=linea.split(",")
@@ -87,7 +87,7 @@ def main():
     """main es la funcion principal de nuestro programa, es la encargada
     del control del mismo."""
     tabla = {}
-    with open("prueba.txt") as f:
+    with open("dataset_airbnb.csv") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
 
