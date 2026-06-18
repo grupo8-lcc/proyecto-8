@@ -50,7 +50,7 @@ def habitac_alquiladas(dataset:dict)->dict:
         habitac_alquiladas({"room_type":["Private_room", "Hotel_room", "Entire_home/apt"]}) -> {"Entire_home/apt":1, "Private_room":1, "Shared_room":0, "Hotel_room":1}
         habitac_alquiladas(habitac_alquiladas({"room_type":[]}) -> {"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}) """
     
-    dicc_habita={"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}
+    dicc_habita={"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}
 
     for habitaciones in dataset["room_type"]:
         dicc_habita[habitaciones]+=1
