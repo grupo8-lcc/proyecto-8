@@ -103,7 +103,7 @@ def main():
     valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=100, value=0)
     st.write("", valor)
     dicc_noches=Noches(valor, tabla)
-    st.map(data=dicc_noches, "hola", latitude="latitude", longitude="longitude", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
+    st.map(data=dicc_noches, latitude="latitude", longitude="longitude", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
     return 0
 
 main()
