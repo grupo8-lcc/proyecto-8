@@ -1,5 +1,6 @@
 import streamlit as st 
 import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
 st.title ("Proyecto Grupal Programacion")
 st.write ("Empecemos a trabajar en equipo")
 
