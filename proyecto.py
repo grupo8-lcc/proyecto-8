@@ -102,7 +102,7 @@ def main():
     #slider para elegir la cantidad de personas de la busqueda
     valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=100, value=0)
     st.write("", valor)
-    noches(valor, tabla)
+    Noches(valor, tabla)
 
     return 0
 
