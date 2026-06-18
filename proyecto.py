@@ -1,6 +1,5 @@
 import streamlit as st 
 import matplotlib.pyplot as plt
-from numpy.random import default_rng as rng
 st.title ("Proyecto Grupal Programacion")
 st.write ("Empecemos a trabajar en equipo")
 
@@ -60,7 +59,7 @@ def habitac_alquiladas(dataset:dict)->dict:
 
 def Noches(num:int, dataset:dict)->dict:
 
-    dicc_alquileres={"lat":[], "lon":[]}
+    dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
     num=str(num)
     i=0
@@ -70,8 +69,8 @@ def Noches(num:int, dataset:dict)->dict:
         i+=1
     
     for x in index_de_alquiler:
-        dicc_alquileres["lat"].append(dataset["latitude"][x])
-        dicc_alquileres["lon"].append(dataset["longitude"][x])
+        dicc_alquileres["latitude"].append(dataset["latitude"][x])
+        dicc_alquileres["longitude"].append(dataset["longitude"][x])
     
     return dicc_alquileres
 
@@ -104,8 +103,30 @@ def main():
     valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=100, value=0)
     st.write("", valor)
     dicc_noches=Noches(valor, tabla)
-    st.map(data=dicc_noches, latitude="lat", longitude="lon", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
-    
+    #st.map(data=dicc_noches, latitude="latitude", longitude="longitude", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
+    fig, ax = plt.subplots(figsize=(6,6))
+    # Configurar mapa centrado en Rio de Janeiro
+    m = Basemap(projection='merc',
+                llcrnrlat=-25, urcrnrlat=-20,   # límites de latitud
+                llcrnrlon=-45, urcrnrlon=-40,   # límites de longitud
+                resolution='i', ax=ax)
+
+    m.drawcoastlines()
+    m.drawcountries()
+    m.drawmapboundary(fill_color='lightblue')
+    m.fillcontinents(color='lightgreen', lake_color='lightblue')
+    # Lista de coordenadas
+    latitudes = dicc_noches["latitude"]
+    longitudes = dicc_noches["longitude"]
+
+    # Convertir a coordenadas del mapa
+    x, y = m(longitudes, latitudes)
+
+    # Dibujar puntos
+    m.scatter(x, y, marker='o', color='red', zorder=5)
+
+    # Mostrar en Streamlit
+    st.pyplot(fig)
     return 0
 
 main()
