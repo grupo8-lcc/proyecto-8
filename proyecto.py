@@ -34,6 +34,8 @@ def procesam_dataset(f):
     long = len(lista_indice)-1
 
     for linea in f:
+        while linea[-1]!=",":
+            linea=linea+f.readline()
         lista_datos=linea.split(",")
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
@@ -106,30 +108,7 @@ def main():
     st.write("", valor)
     dicc_noches=Noches(valor, tabla)
     #st.map(data=dicc_noches, latitude="latitude", longitude="longitude", color=None, size=None, zoom=64, width="stretch", height="stretch", use_container_width=None)
-    
-    # Crear figura con proyección Mercator
-    fig = plt.figure(figsize=(6,6))
-    ax = plt.axes(projection=ccrs.Mercator())
 
-    # Definir límites alrededor de Río de Janeiro
-    ax.set_extent([-45, -40, -25, -20], crs=ccrs.PlateCarree())
-
-    # Agregar costas y países
-    ax.add_feature(cfeature.COASTLINE)
-    ax.add_feature(cfeature.BORDERS, linestyle=':')
-    ax.add_feature(cfeature.LAND, facecolor='lightgreen')
-    ax.add_feature(cfeature.OCEAN, facecolor='lightblue')
-
-    # Varias coordenadas (ejemplo: puntos de alquileres)
-    latitudes = dicc_noches["latitude"]
-    longitudes = dicc_noches["longitude"]
-
-    # Dibujar todos los puntos en el mapa
-    ax.plot(longitudes, latitudes, marker='o', color='red',
-            markersize=6, linestyle='None', transform=ccrs.PlateCarree())
-
-    # Mostrar en Streamlit
-    st.pyplot(fig)
     return 0
 
 main()
