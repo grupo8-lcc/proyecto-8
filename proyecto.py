@@ -24,19 +24,27 @@ def procesam_dataset(f):
     La funcion recorre el archivo linea por linea, guardando en primer lugar las categorias,
     y luego los datos de cada linea en cada categoria correspondiente."""
     tabla = {}
-    primer_linea=f.readline()
-    lista_indice=primer_linea.split(",")
+    primer_linea = f.readline()
+    lista_indice = primer_linea.split(",")
     for indice in lista_indice:
-        tabla[indice]=[]
+        tabla[indice] = []
 
-    long=len(lista_indice)-1
-
-    
+    long = len(lista_indice)-1
+    linea_aux =""
+    """for linea in f:
+        linea_aux=linea_aux+linea
+        lista_datos=linea_aux.split(",")
+        if long==len(lista_datos):
+            for x in range(0,long):
+                tabla[lista_indice[x]].append(lista_datos[x])
+            linea_aux=""
+            linea_aux = ""
+            """
     for linea in f:
         lista_datos=linea.split(",")
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
-    
+
     return tabla
 
 
@@ -55,6 +63,17 @@ def habitac_alquiladas(dataset:dict)->dict:
 
     for habitaciones in dataset["room_type"]:
         dicc_habita[habitaciones]+=1
+<<<<<<< HEAD
+=======
+        """if  habitaciones=="Entire home/apt":
+            dicc_habita["Entire_home/apt"]+=1
+        elif habitaciones=="Private room":
+            dicc_habita["Private_room"]+=1
+        elif habitaciones=="Shared room":
+            dicc_habita["Shared_room"]+=1
+        else:
+            dicc_habita["Hotel room"]+=1"""
+>>>>>>> 0946da5f1fa344229b6ae0321ac8dac16634a563
 
     return dicc_habita
 
