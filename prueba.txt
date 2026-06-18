@@ -2,3 +2,6 @@ id,name,host_id,host_name,neighbourhood_group,neighbourhood,latitude,longitude,r
 3031067,Apartamento inteiro,15438799,Gaetano,,Campo Grande,-22.92161,-43.55507,Private room,,5,0,,,1,363,0,
 689765597876490315,In Rio - aconchegante e prático.,47584281,Renato Silva Vianna,,Jacarepaguá,-22.97187,-43.41419,Entire home/apt,665.0,1,0,,,160,365,0,
 1408643944925897132,Apê no coração de Copacabana,692072943,Leonidio,,Copacabana,-22.9649,-43.17818,Entire home/apt,530.0,1,0,,,1,365,0,
+773095726468446402,"Leblon, Ipanema
+praias-Lagoa
+2 qtos até 4 hóspedes",138787147,Leila Luana,,Leblon,-22.9829747,-43.2163955,Entire home/apt,760.0,7,12,2025-06-22,0.36,1,162,3,
