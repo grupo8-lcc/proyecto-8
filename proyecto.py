@@ -34,6 +34,7 @@ def procesam_dataset(f):
     for linea in f:
         while linea[-1]!=",":
             linea=linea+f.readline()
+            print(linea)
         lista_datos=linea.split(",")
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
