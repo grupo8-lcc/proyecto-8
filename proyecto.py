@@ -32,7 +32,7 @@ def procesam_dataset(f):
     long = len(lista_indice)-1
 
     for linea in f:
-        while linea[-1]!=",":
+        while linea[-2]!=",":
             linea=linea+f.readline()
             print(linea)
         lista_datos=linea.split(",")
