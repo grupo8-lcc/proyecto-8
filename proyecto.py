@@ -1,6 +1,7 @@
 import streamlit as st 
 import matplotlib.pyplot as plt
 import csv
+from st_keyup import st_keyup
 st.title ("Proyecto Grupal Programacion")
 st.write ("Empecemos a trabajar en equipo")
 
@@ -117,12 +118,17 @@ def main():
     ax.legend(title='Tipo de habitacion')
     st.pyplot(fig)
 
-    #slider para elegir la cantidad de personas de la busqueda
+    #slider para elegir la cantidad de personas de la busqueda y mapa que muestra los alquileres
     valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=50, value=1)
     dicc_noches=Noches(valor, tabla)
-    #pudimos poner el slider e intentamos usar el mapa con el archivo de prueba pero aunque no tiraba ningun error
-    #el mapa igual no se mostraba
     st.map(data=dicc_noches, latitude="latitude", longitude="longitude", zoom=11)
+
+    #widget que toma un precio maximo
+    number = st.number_input("Precio maximo que desea pagar:", value=None, placeholder="Type a number...")
+
+
+
+
     return 0
 
 main()
