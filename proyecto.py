@@ -90,8 +90,8 @@ def Noches(num:int, dataset:dict)->dict:
         i+=1
     
     for x in index_de_alquiler:
-        dicc_alquileres["latitude"].append(dataset["latitude"][x])
-        dicc_alquileres["longitude"].append(dataset["longitude"][x])
+        dicc_alquileres["latitude"].append(float(dataset["latitude"][x]))
+        dicc_alquileres["longitude"].append(float(dataset["longitude"][x]))
     
     return dicc_alquileres
 
