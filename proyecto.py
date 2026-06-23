@@ -24,34 +24,36 @@ def procesam_dataset(f):
     La funcion recorre el archivo linea por linea, guardando en primer lugar las categorias,
     y luego los datos de cada linea en cada categoria correspondiente."""
     tabla = {}
+    lector=csv.reader(f)
     primer_linea = f.readline()
-    lista_indice = primer_linea.split(",")
+    lista_indice = next(lector)
     for indice in lista_indice:
         tabla[indice] = []
 
-    long = len(lista_indice)-1
+    long = len(lista_indice)
 
-    #pudimos corregir el problema de los saltos de lineas en las filas pero nos encontramos con otro problema
-    #ya que dentro de algunos nombres hay comas lo que implica que el programa lo lee como un dato extra
-    # y eso rompe la lectura del dataset
-    for linea in f:
-        #para armar la linea en caso que este dividida en distintas filas
-        while linea[-2]!="," and linea[-1]=="\n":
-            linea=linea+f.readline()
-            print(linea)
-        #para ignorar las comas en caso que un nombre tenga una coma
-        primer_comilla=linea.find('"')
-        fin_comilla=linea.find('"', primer_comilla+1)
-        if primer_comilla!=-1 and fin_comilla!=-1:
-            nombre=linea[primer_comilla+1:fin_comilla]
-            nombre=nombre.replace(",","")
-            linea=linea[:primer_comilla+1]+nombre+linea[fin_comilla:]
+    for lista_datos in lector:
         lista_datos=linea.split(",")
-
         #agrega los datos al diccionario 
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
-
+    #intento fallido de lectura del dataset sin bibliotecas
+    # for linea in f:
+    #     #para armar la linea en caso que este dividida en distintas filas
+    #     while linea[-2]!="," and linea[-1]=="\n":
+    #         linea=linea+f.readline()
+    #         print(linea)
+    #     #para ignorar las comas en caso que un nombre tenga una coma
+    #     primer_comilla=linea.find('"')
+    #     fin_comilla=linea.find('"', primer_comilla+1)
+    #     if primer_comilla!=-1 and fin_comilla!=-1:
+    #         nombre=linea[primer_comilla+1:fin_comilla]
+    #         nombre=nombre.replace(",","")
+    #         linea=linea[:primer_comilla+1]+nombre+linea[fin_comilla:]
+    #     lista_datos=linea.split(",")
+    #     #agrega los datos al diccionario 
+    #     for x in range(0,long):
+    #         tabla[lista_indice[x]].append(lista_datos[x])
     return tabla
 
 
@@ -102,7 +104,7 @@ def main():
     tabla = {}
     #tenemos problemas para leer el data set pero no sabemos cual ya distinguimos los dos casos problematicos
     #y los resolvimos se puede ver en el archivo de prueba.txt pero sin embargo sigue tirando un error de index
-    with open("prueba.txt") as f:
+    with open("dataset_airbnb.csv") as f:
         tabla = procesam_dataset(f)
     source = habitac_alquiladas(tabla)
 
