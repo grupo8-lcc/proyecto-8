@@ -1,7 +1,6 @@
 import streamlit as st 
 import matplotlib.pyplot as plt
 import csv
-from st_keyup import st_keyup
 st.title ("Proyecto Grupal Programacion")
 st.write ("Empecemos a trabajar en equipo")
 
