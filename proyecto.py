@@ -26,7 +26,6 @@ def procesam_dataset(f):
     y luego los datos de cada linea en cada categoria correspondiente."""
     tabla = {}
     lector=csv.reader(f)
-    primer_linea = f.readline()
     lista_indice = next(lector)
     for indice in lista_indice:
         tabla[indice] = []
@@ -34,7 +33,6 @@ def procesam_dataset(f):
     long = len(lista_indice)
 
     for lista_datos in lector:
-        lista_datos=linea.split(",")
         #agrega los datos al diccionario 
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
