@@ -111,6 +111,7 @@ def precios(precio_max:str, tabla:dict):
     
     for index in index_de_alquiler:
         for llave in tabla:
+            airbnbs[llave]=[]
             airbnbs[llave].append(tabla[llave][i])
     
     return airbnbs
