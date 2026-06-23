@@ -146,7 +146,7 @@ def main():
     st.map(data=dicc_noches, latitude="latitude", longitude="longitude", zoom=11)
 
     #widget que toma un precio maximo
-    precio = st.number_input("Precio maximo que desea pagar:", value=None, placeholder="", step=1)
+    precio = st.number_input("Precio maximo que desea pagar:", value=0, placeholder="", step=1)
     #tabla donde se muestran los airbnb que cumplen con ese precio o menor
     product_data = precios(precio, tabla)
 
