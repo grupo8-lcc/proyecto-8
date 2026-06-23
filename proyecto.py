@@ -118,7 +118,7 @@ def main():
     st.pyplot(fig)
 
     #slider para elegir la cantidad de personas de la busqueda
-    valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=100, value=0)
+    valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=50, value=1)
     dicc_noches=Noches(valor, tabla)
     #pudimos poner el slider e intentamos usar el mapa con el archivo de prueba pero aunque no tiraba ningun error
     #el mapa igual no se mostraba
