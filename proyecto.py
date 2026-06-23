@@ -82,10 +82,10 @@ def Noches(num:int, dataset:dict)->dict:
     de cada airbnb guardado con su posicion para guardarlas en otro diccionario el cual sera returneado"""
     dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
-    num=str(num)
+    num=num
     i=0
     for noches in dataset["minimum_nights"]:
-        if noches<=num:
+        if int(noches)<=num:
             index_de_alquiler.append(i)
         i+=1
     
@@ -105,7 +105,7 @@ def precios(precio_max:str, tabla:dict):
     index_de_alquiler=[]
     i=0
     for precio in tabla["price"]:
-        if precio<=precio_max:
+        if precio and int(precio)<=int(precio_max):
             index_de_alquiler.append(i)
         i+=1
     
