@@ -105,7 +105,7 @@ def precios(precio_max:str, tabla:dict):
     index_de_alquiler=[]
     i=0
     for precio in tabla["price"]:
-        if precio and int(precio)<=int(precio_max):
+        if precio and float(precio)<=float(precio_max):
             index_de_alquiler.append(i)
         i+=1
     
