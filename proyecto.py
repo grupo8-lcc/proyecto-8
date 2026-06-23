@@ -95,6 +95,29 @@ def Noches(num:int, dataset:dict)->dict:
     
     return dicc_alquileres
 
+def precios(precio_max:str, tabla:dict):
+    """precios: str, dicc{str: list[str]} -> dicc{
+    precios, toma el valor ingresado por el usuario y el diccionario que representa el dataset
+    y devuelve un diccionario con los datos de todos los airbnb cuyo precio es menor o igual
+    al precio ingresado"""
+
+    airbnbs={}
+    index_de_alquiler=[]
+    i=0
+    for precio in tabla["price"]:
+        if precio<=precio_max:
+            index_de_alquiler.append(i)
+        i+=1
+    
+    for index in index_de_alquiler:
+        for llave in tabla:
+            airbnbs[llave].append(tabla[llave][i])
+    
+    return airbnbs
+
+
+
+
 #dataset_airbnb.csv
 # Funcion Principal:
 def main():
@@ -123,8 +146,12 @@ def main():
     st.map(data=dicc_noches, latitude="latitude", longitude="longitude", zoom=11)
 
     #widget que toma un precio maximo
-    number = st.number_input("Precio maximo que desea pagar:", value=None, placeholder="", step=1)
+    precio = st.number_input("Precio maximo que desea pagar:", value=None, placeholder="", step=1)
+    #tabla donde se muestran los airbnb que cumplen con ese precio o menor
+    product_data = precios(precio, tabla)
 
+    # Mostrar como tabla
+    st.table(product_data)
 
 
 
