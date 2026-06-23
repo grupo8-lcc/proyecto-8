@@ -124,7 +124,7 @@ def main():
     #pudimos poner el slider e intentamos usar el mapa con el archivo de prueba pero aunque no tiraba ningun error
     #el mapa igual no se mostraba
     st.map(data=dicc_noches, latitude="latitude", longitude="longitude", zoom=11)
-
     return 0
 
 main()
+st.write ("Empecemos a trabajar en equipo")
