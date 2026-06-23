@@ -85,7 +85,7 @@ def Noches(num:int, dataset:dict)->dict:
     num=str(num)
     i=0
     for noches in dataset["minimum_nights"]:
-        if noches==num:
+        if noches<=num:
             index_de_alquiler.append(i)
         i+=1
     
@@ -119,7 +119,6 @@ def main():
 
     #slider para elegir la cantidad de personas de la busqueda
     valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, max_value=100, value=0)
-    st.write("", valor)
     dicc_noches=Noches(valor, tabla)
     #pudimos poner el slider e intentamos usar el mapa con el archivo de prueba pero aunque no tiraba ningun error
     #el mapa igual no se mostraba
@@ -127,4 +126,3 @@ def main():
     return 0
 
 main()
-st.write ("Empecemos a trabajar en equipo")
