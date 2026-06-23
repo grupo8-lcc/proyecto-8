@@ -123,7 +123,7 @@ def main():
     st.map(data=dicc_noches, latitude="latitude", longitude="longitude", zoom=11)
 
     #widget que toma un precio maximo
-    number = st.number_input("Precio maximo que desea pagar:", value=None, placeholder="Type a number...")
+    number = st.number_input("Precio maximo que desea pagar:", value=None, placeholder="", step=1)
 
 
 
