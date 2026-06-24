@@ -119,6 +119,20 @@ def precios(precio_max:int, tabla:dict):
    
     return airbnbs
 
+# pregunta: ¿Cuántos alquileres hay en cada vecindario?
+
+def cont_vecindarios(dataset:dict)->dict:
+"""cont_vecindarios: Dict(List(Str)) -> Dict(Int)
+    cant_vecindarios recibe la estructura con la que se representa el dataset,
+    y devuelve un diccionario, que tiene la cantidad de cada vecindario."""  
+    
+    dicc_vecindarios={}
+
+    for vecindarios in dataset["neighbourhood_group"]:
+        dicc_vecindarios[vecindarios]+=1
+
+    return dicc_vecindarios
+
 
 
 
@@ -171,6 +185,14 @@ def main():
         # Guardar en el nuevo diccionario
         subtabla[k] = valores_recortados
     st.table(subtabla, border="horizontal")
+
+
+    # prueba de que cont_vecindarios funciona
+    print(cont_vecindarios(tabla))
+
+    #st.table(product_data, border="horizontal")
+
+
 
     return 0
 
