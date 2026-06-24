@@ -103,7 +103,7 @@ def precios(precio_max:str, tabla:dict):
 
     #defino el diccionario y asigno las keys
     airbnbs={}
-    for llave in tala:
+    for llave in tabla:
         airbnbs[llave]=[]
     #guardo el indice de cada airbnb en el dataset que cumple lo que necesito
     index_de_alquiler=[]
