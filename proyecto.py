@@ -122,7 +122,7 @@ def precios(precio_max:int, tabla:dict):
 # pregunta: ¿Cuántos alquileres hay en cada vecindario?
 
 def cont_vecindarios(dataset:dict)->dict:
-"""cont_vecindarios: Dict(List(Str)) -> Dict(Int)
+    """cont_vecindarios: Dict(List(Str)) -> Dict(Int)
     cant_vecindarios recibe la estructura con la que se representa el dataset,
     y devuelve un diccionario, que tiene la cantidad de cada vecindario."""  
     
@@ -188,12 +188,12 @@ def main():
 
 
     # prueba de que cont_vecindarios funciona
-    print(cont_vecindarios(tabla))
+    resultado=cont_vecindarios(tabla)
+    st.write(resultado)
 
     #st.table(product_data, border="horizontal")
 
 
 
     return 0
-
 main()
