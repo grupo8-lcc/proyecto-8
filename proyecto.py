@@ -101,17 +101,20 @@ def precios(precio_max:str, tabla:dict):
     y devuelve un diccionario con los datos de todos los airbnb cuyo precio es menor o igual
     al precio ingresado"""
 
+    #defino el diccionario y asigno las keys
     airbnbs={}
+    for llave in tala:
+        airbnbs[llave]=[]
+    #guardo el indice de cada airbnb en el dataset que cumple lo que necesito
     index_de_alquiler=[]
     i=0
     for precio in tabla["price"]:
         if precio and float(precio)<=float(precio_max):
             index_de_alquiler.append(i)
         i+=1
-    
+    #formo el diccionario con todos los airbnb que cumplen la condicion
     for index in index_de_alquiler:
         for llave in tabla:
-            airbnbs[llave]=[]
             airbnbs[llave].append(tabla[llave][index])
    
     return airbnbs
