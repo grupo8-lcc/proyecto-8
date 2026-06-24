@@ -155,7 +155,21 @@ def main():
     product_data = precios(precio, tabla)
 
     # Mostrar como tabla
-    st.table(product_data, border="horizontal")
+    # Parámetros de paginación
+    page_size = st.slider("Filas por página", 10, 200, 50)
+    page = st.number_input("Página", min_value=1, max_value=(len(product_data["price"]) // page_size)+1, step=1)
+    start = (page - 1) * page_size
+    end = start + page_size
+
+    #k y v se refieren a keys y values
+    for k, v in tabla.items():
+        # Tomar el slice de esa lista entre start y end
+        valores_recortados = v[start:end]
+        # Guardar en el nuevo diccionario
+        subtabla[k] = valores_recortados
+        
+    st.table(subtabla, border="horizontal")
+    #st.table(product_data, border="horizontal")
 
 
 
