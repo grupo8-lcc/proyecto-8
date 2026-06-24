@@ -64,8 +64,8 @@ def habitac_alquiladas(dataset:dict)->dict:
     habitac_alquiladas recibe la estructura con la que se representa el dataset,
     y devuelve un diccionario, que tiene la cantidad de cada tipo de habitacion.
     EJEMPLOS:
-        habitac_alquiladas({"room_type":["Private_room", "Hotel_room", "Entire_home/apt"]}) -> {"Entire_home/apt":1, "Private_room":1, "Shared_room":0, "Hotel_room":1}
-        habitac_alquiladas(habitac_alquiladas({"room_type":[]}) -> {"Entire_home/apt":0, "Private_room":0, "Shared_room":0, "Hotel_room":0}) """
+        habitac_alquiladas({"room_type":["Private room", "Hotel room", "Entire home/apt"]}) -> {"Entire home/apt":1, "Private room":1, "Shared room":0, "Hotel room":1}
+        habitac_alquiladas(habitac alquiladas({"room type":[]}) -> {"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}) """
     
     dicc_habita={"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}
 
@@ -152,27 +152,25 @@ def main():
     #widget que toma un precio maximo
     precio = st.number_input("Precio maximo que desea pagar:", value=0, placeholder="", step=1)
     #tabla donde se muestran los airbnb que cumplen con ese precio o menor
-    product_data = precios(precio, tabla)
-
+    dicc_precios = precios(precio, tabla)
     # Mostrar como tabla
-    # Parámetros de paginación
+    #estara dividida en paginas ya que sino cuando hay muchas filas toda la pagina se traba
+    #haciendola lenta y pesada
+
+    # Parámetros para las paginas
     page_size = 30
-    page = st.number_input("Página", min_value=1, max_value=(len(product_data["price"]) // page_size)+1, step=1)
+    page = st.number_input("Página", min_value=1, max_value=(len(dicc_precios["price"]) // page_size)+1, step=1)
     start = (page - 1) * page_size
     end = start + page_size
-
+    #se crean las subtablas que se van a mostrar en cada pagina
     subtabla={}
     #k y v se refieren a keys y values
-    for k, v in product_data.items():
+    for k, v in dicc_precios.items():
         # Tomar el slice de esa lista entre start y end
         valores_recortados = v[start:end]
         # Guardar en el nuevo diccionario
         subtabla[k] = valores_recortados
-
     st.table(subtabla, border="horizontal")
-    #st.table(product_data, border="horizontal")
-
-
 
     return 0
 
