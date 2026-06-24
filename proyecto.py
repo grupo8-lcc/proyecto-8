@@ -156,7 +156,7 @@ def main():
 
     # Mostrar como tabla
     # Parámetros de paginación
-    page_size = st.slider("Filas por página", 10, 200, 50)
+    page_size = 30
     page = st.number_input("Página", min_value=1, max_value=(len(product_data["price"]) // page_size)+1, step=1)
     start = (page - 1) * page_size
     end = start + page_size
