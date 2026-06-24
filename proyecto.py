@@ -95,7 +95,7 @@ def Noches(num:int, dataset:dict)->dict:
     
     return dicc_alquileres
 
-def precios(precio_max:str, tabla:dict):
+def precios(precio_max:int, tabla:dict):
     """precios: str, dicc{str: list[str]} -> dicc{
     precios, toma el valor ingresado por el usuario y el diccionario que representa el dataset
     y devuelve un diccionario con los datos de todos los airbnb cuyo precio es menor o igual
@@ -163,7 +163,7 @@ def main():
 
     subtabla={}
     #k y v se refieren a keys y values
-    for k, v in tabla.items():
+    for k, v in product_data.items():
         # Tomar el slice de esa lista entre start y end
         valores_recortados = v[start:end]
         # Guardar en el nuevo diccionario
