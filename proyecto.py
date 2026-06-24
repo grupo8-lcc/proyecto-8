@@ -161,13 +161,14 @@ def main():
     start = (page - 1) * page_size
     end = start + page_size
 
+    subtabla={}
     #k y v se refieren a keys y values
     for k, v in tabla.items():
         # Tomar el slice de esa lista entre start y end
         valores_recortados = v[start:end]
         # Guardar en el nuevo diccionario
         subtabla[k] = valores_recortados
-        
+
     st.table(subtabla, border="horizontal")
     #st.table(product_data, border="horizontal")
 
