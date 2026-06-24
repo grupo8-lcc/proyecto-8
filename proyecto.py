@@ -71,6 +71,8 @@ def habitac_alquiladas(dataset:dict)->dict:
 
     for habitaciones in dataset["room_type"]:
         dicc_habita[habitaciones]+=1
+        if habitaciones=="Hotel room":
+            dicc_habita["Hotel room"]+=100
 
     return dicc_habita
 
