@@ -101,7 +101,11 @@ def precios(precio_max:int, tabla:dict):
     """precios: str, dicc{str: list[str]} -> dicc{
     precios, toma el valor ingresado por el usuario y el diccionario que representa el dataset
     y devuelve un diccionario con los datos de todos los airbnb cuyo precio es menor o igual
-    al precio ingresado"""
+    al precio ingresado
+    Ejemplo:
+    (los tres puntos son el resto de campos del diccionario)
+    precios(600, {"price":[600, 400, 1000, 4000, 300], ...})== {...,"price":[600, 400, 300], ...}
+    precios(62, {"price":[600, 400, 1000, 4000, 300], ...})== {}"""
 
     # defino el diccionario y asigno las keys
     airbnbs={}
@@ -125,7 +129,10 @@ def precios(precio_max:int, tabla:dict):
 def cont_vecindarios(dataset:dict)->dict:
     """cont_vecindarios: Dict(List(Str)) -> Dict(Int)
     cant_vecindarios recibe la estructura con la que se representa el dataset,
-    y devuelve un diccionario, que tiene la cantidad de cada vecindario."""  
+    y devuelve un diccionario, que tiene la cantidad de cada vecindario.
+    EJEMPLO:
+    cont_vecindario({"neighbourhood":["Copacabana", "Copacabana", "Copacabana", "Buenos Aires"]}) == {"Copacabana":3,"Buenos Aires":1}
+    """  
     
     dicc_vecindarios={}
 
@@ -143,7 +150,10 @@ def clasif_props(tipo_de_prop:list[str], dataset:dict)->dict:
     clasif_props recibe el tipo de propiedad que llega por el checkbox y recorre la seccion de room_type del diccionario
     que representa el dataset, de ahi busca cuando el tipo de prop. ingresado coincide con la value guarda un indice en 
     una lista que seria el numero del airbnb que se esta guardando. Luego recorre esa lista accediendo a la latitud y 
-    longitud de cada airbnb guardado con su posicion para guardarlas en otro diccionario el cual sera returneado"""
+    longitud de cada airbnb guardado con su posicion para guardarlas en otro diccionario el cual sera returneado.
+    EJEMPLO:
+    clasif_props(["Entire home/apt", "Private room"],{...,"room_type":["Entire home/apt","Entire home/apt","Private room"]},...) == {"latitude":[0, 90, 38], "longitude":[1, 20, 17]}
+    clasif_props(["Entire home/apt","Private room", "Shared room","Hotel room"],{...,"room_type":["Entire home/apt","Private room","Shared room", "Hotel room"],...})=={"latitude":[20, 0, 30, 15],"longitude":[0,21,45, 9]}"""
     dicc_alq_filtrados={"latitude":[], "longitude":[]}
     index_de_alquiler = {}
     for check in tipo_de_prop:
@@ -205,6 +215,7 @@ def main():
         clasific.append("Shared room")
     if hotel_r:
         clasific.append("Hotel room")
+    # En caso de no tener ningun checkbox tildado, se opta por mostrar todas las ubicaciones de las propiedades del dataset
     if not clasific:
         clasific = ["Entire home/apt", "Private room", "Shared room", "Hotel room"]
     dicc_clasifprop = clasif_props(clasific, tabla)
