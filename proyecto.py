@@ -127,7 +127,7 @@ def cont_vecindarios(dataset:dict)->dict:
     
     dicc_vecindarios={}
 
-    for vecindarios in dataset["neighbourhood_group"]:
+    for vecindarios in dataset["neighbourhood"]:
         try:
             dicc_vecindarios[vecindarios]+=1
         except:
