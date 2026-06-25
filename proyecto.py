@@ -248,7 +248,7 @@ def main():
     # Grafica de torta de cont_vecindarios
     vecindarios=cont_vecindarios(tabla)
     fig, ax = plt.subplots()
-    ax.pie(vecindarios.values(), labels=vecindarios.keys(), autopct='%1.1f%%', labeldistance = 2, radius=8)
+    ax.pie(vecindarios.values(), labels=vecindarios.keys(), autopct='%1.1f%%', labeldistance = 2, radius=3)
     ax.axis('equal')
     ax.set_title('Cantidad de valores por vecindario')
     st.pyplot(fig)
