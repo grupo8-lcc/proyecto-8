@@ -190,14 +190,6 @@ def main():
     dicc_noches=Noches(valor, tabla)
     st.map(data=dicc_noches, latitude="latitude", longitude="longitude", zoom=11)
 
-    # Widget que toma un precio maximo
-    precio = st.number_input("Precio maximo que desea pagar:", value=0, placeholder="", step=1)
-    # Tabla donde se muestran los airbnb que cumplen con ese precio o menor
-    dicc_precios = precios(precio, tabla)
-    # Mostrar como tabla
-    # estara dividida en paginas ya que sino cuando hay muchas filas toda la pagina se traba
-    # haciendola lenta y pesada
-
     # Checkbox para elegir el tipo de propiedad buscada y mapa que muestra los alquileres
     # "Entire home/apt"  | "Private room" | "Shared room" | "Hotel room"
     ent = st.checkbox("Entire home/apt")
@@ -217,7 +209,14 @@ def main():
         clasific = ["Entire home/apt", "Private room", "Shared room", "Hotel room"]
     dicc_clasifprop = clasif_props(clasific, tabla)
     st.map(data=dicc_clasifprop, latitude="latitude", longitude="longitude", zoom=11)
-
+    
+    # Widget que toma un precio maximo
+    precio = st.number_input("Precio maximo que desea pagar:", value=0, placeholder="", step=1)
+    # Tabla donde se muestran los airbnb que cumplen con ese precio o menor
+    dicc_precios = precios(precio, tabla)
+    # Mostrar como tabla
+    # estara dividida en paginas ya que sino cuando hay muchas filas toda la pagina se traba
+    # haciendola lenta y pesada
     # Parametros para las paginas
     page_size = 30
     page = st.number_input("Página", min_value=1, max_value=(len(dicc_precios["price"]) // page_size)+1, step=1)
