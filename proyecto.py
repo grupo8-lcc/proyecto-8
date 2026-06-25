@@ -131,7 +131,7 @@ def cont_vecindarios(dataset:dict)->dict:
     cant_vecindarios recibe la estructura con la que se representa el dataset,
     y devuelve un diccionario, que tiene la cantidad de cada vecindario.
     EJEMPLO:
-    cont_vecindario({"neighbourhood":["Copacabana", "Copacabana", "Copacabana", "Buenos Aires"]}) == {"Copacabana":3,"Buenos Aires":1}
+    cont_vecindario({"neighbourhood":["Copacabana", "Copacabana", "Copacabana", "Centro"]}) == {"Copacabana":3,"Centro":1}
     cont_vecindario({"neighbourhood":["Copacabana"]}) == {"Copacabana":1}
     """  
     
