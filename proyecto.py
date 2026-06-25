@@ -189,7 +189,7 @@ def main():
     st.table(subtabla, border="horizontal")
 
 
-    # prueba de que cont_vecindarios funciona
+    # grafica de torta de cont_vecindarios
     vecindarios=cont_vecindarios(tabla)
     fig, ax = plt.subplots()
     ax.pie(vecindarios.values(), labels=vecindarios.keys(), autopct='%1.1f%%')
