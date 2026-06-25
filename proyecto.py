@@ -145,15 +145,18 @@ def clasif_props(tipo_de_prop:list[str], dataset:dict)->dict:
     una lista que seria el numero del airbnb que se esta guardando. Luego recorre esa lista accediendo a la latitud y 
     longitud de cada airbnb guardado con su posicion para guardarlas en otro diccionario el cual sera returneado"""
     dicc_alq_filtrados={"latitude":[], "longitude":[]}
-    index_de_alquiler={"Entire home/apt":[], "Private room":[], "Shared room":[], "Hotel room":[]}
-    #num=num
+    index_de_alquiler = {}
+    for check in tipo_de_prop:
+        index_de_alquiler[check]=[]
+    # index_de_alquiler={"Entire home/apt":[], "Private room":[], "Shared room":[], "Hotel room":[]}
     i=0
-    for propiedad in tipo_de_prop:
-        for prop in dataset["room_type"]:
-            if prop==propiedad:
-                index_de_alquiler[propiedad].append(i)
+    #for propiedad in tipo_de_prop:
+    for prop in dataset["room_type"]:
+            #if prop==propiedad:
+            if prop in index_de_alquiler.keys():
+                index_de_alquiler[prop].append(i)
             i+=1
-        i = 0
+        #i = 0
     for lista_dp in index_de_alquiler.values():
         for ind_p in lista_dp:
             dicc_alq_filtrados["latitude"].append(float(dataset["latitude"][ind_p]))
