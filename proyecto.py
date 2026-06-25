@@ -195,7 +195,6 @@ def main():
     ax.pie(vecindarios.values(), labels=vecindarios.keys(), autopct='%1.1f%%')
     ax.axis('equal')
     ax.set_title('Cantidad de valores por vecindario')
- #   st.title("Cantidad de valores por vecindario")
     st.pyplot(fig)
 
     return 0
