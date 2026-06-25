@@ -190,9 +190,12 @@ def main():
 
 
     # prueba de que cont_vecindarios funciona
-    resultado=cont_vecindarios(tabla)
-    st.write(resultado)
-
+    vecindarios=cont_vecindarios(tabla)
+    fig, ax = plt.subplots()
+    ax.pie(sizes=keys(vecindario), labels=values(vecindario), autopct='%1.1f%%')
+    ax.axis('equal')
+    st.title("Cantidad de valores por vecindario")
+    st.pyplot(fig)
 
     return 0
 main()
