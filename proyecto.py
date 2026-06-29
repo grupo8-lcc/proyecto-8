@@ -59,17 +59,19 @@ def procesam_dataset(f):
 # PREGUNTA ESTATICA A RESOLVER: ¿QUE TIPOS DE HABITACIONES SON LAS MAS ALQUILADAS?
 
 # habitac_alquiladas:
-def habitac_alquiladas(dataset:dict)->dict:
-    """habitac_alquiladas: Dict(List(Str)) -> Dict(Int)
-    habitac_alquiladas recibe la estructura con la que se representa el dataset,
+def habitac_alquiladas(lista_habitaciones:list)->dict:
+    """
+    Representamos tipos de habitaciones por str y un contador de cada habitacion por int
+    habitac_alquiladas: List(Str) -> Dict(str:Int)
+    habitac_alquiladas recibe la lista del dataset conteniendo los tipos de habitaciones,
     y devuelve un diccionario, que tiene la cantidad de cada tipo de habitacion.
     EJEMPLOS:
-        habitac_alquiladas({"room_type":["Private room", "Hotel room", "Entire home/apt"]}) -> {"Entire home/apt":1, "Private room":1, "Shared room":0, "Hotel room":1}
-        habitac_alquiladas(habitac alquiladas({"room type":[]}) -> {"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}) """
+        habitac_alquiladas(["Private room", "Hotel room", "Entire home/apt"]) -> {"Entire home/apt":1, "Private room":1, "Shared room":0, "Hotel room":1}
+        habitac_alquiladas(habitac alquiladas([]) -> {"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}) """
     
     dicc_habita={"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}
 
-    for habitaciones in dataset["room_type"]:
+    for habitaciones in lista_habitaciones:
         dicc_habita[habitaciones]+=1
 
     return dicc_habita
@@ -127,12 +129,16 @@ def precios(precio_max:int, tabla:dict):
 
 # PREGUNTA: ¿Cuantos alquileres hay en cada vecindario?
 def cont_vecindarios(lista_vecindarios:list)->dict:
-    """cont_vecindarios: Dict(List(Str)) -> Dict(Int)
-    cant_vecindarios recibe la estructura con la que se representa el dataset,
-    y devuelve un diccionario, que tiene la cantidad de cada vecindario.
+    """
+    representamos vecindarios como strings dentro de una list y la cantidad de sus apariciones en la lista como ints
+    vecindario: str
+    cantidad de apariciones de cada vecindarios: int
+    cont_vecindarios: List(Str) -> Dict(str:Int)
+    cont_vecindarios recibe la lista del dataset de los vecindarios de cada airbnb
+    y devuelve un diccionario, cuyo key es cada vecindario y cada value es un contador de apariciones de dicho vecindario.
     EJEMPLO:
-    cont_vecindario({"neighbourhood":["Copacabana", "Copacabana", "Copacabana", "Centro"]}) == {"Copacabana":3,"Centro":1}
-    cont_vecindario({"neighbourhood":["Copacabana"]}) == {"Copacabana":1}
+    cont_vecindario(["Copacabana", "Copacabana", "Copacabana", "Centro"]) == {"Copacabana":3,"Centro":1}
+    cont_vecindario(["Copacabana"]) == {"Copacabana":1}
     """  
     
     dicc_vecindarios={}
@@ -184,7 +190,7 @@ def main():
     # y los resolvimos se puede ver en el archivo de prueba.txt pero sin embargo sigue tirando un error de index
     with open("dataset_airbnb.csv") as f:
         tabla = procesam_dataset(f)
-    source = habitac_alquiladas(tabla)
+    source = habitac_alquiladas(tabla["room_type"])
 
     # Grafica de barras de las habitaciones alquiladas
     fig, ax = plt.subplots()
