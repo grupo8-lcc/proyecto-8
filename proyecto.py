@@ -144,9 +144,9 @@ def cont_vecindarios(lista_vecindarios:list)->dict:
     dicc_vecindarios={}
 
     for vecindarios in lista_vecindarios:
-        try:
+        if vecindarios in dicc_vecindarios:
             dicc_vecindarios[vecindarios]+=1
-        except:
+        else:
             dicc_vecindarios[vecindarios]=1
 
     return dicc_vecindarios
