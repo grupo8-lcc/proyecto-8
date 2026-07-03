@@ -27,6 +27,14 @@ def test_precios():
     assert precios(20, dicc1) =={'id': [],'name': [],'host_id': [],'host_name': [],'neighbourhood_group': [],'neighbourhood': [],'latitude': [],'longitude': [],'room_type': [],'price': [],'minimum_nights': [],'number_of_reviews': [],'last_review': [],'reviews_per_month': [],'calculated_host_listings_count': [],'availability_365': [],'number_of_reviews_ltm': []}
     assert precios(1000, dicc1) == {'id': [ '6'], 'name': ['Rio'], 'host_id': ['475'], 'host_name': ['Renato Silva Vianna'], 'neighbourhood_group': [''], 'neighbourhood': ['Jacarepaguá'], 'latitude': ['-22.97187'], 'longitude': ['-43.41419'], 'room_type': ['Entire home/apt',], 'price': ['665.0'], 'minimum_nights': ['1'], 'number_of_reviews': ['0'], 'last_review': [''], 'reviews_per_month': [''], 'calculated_host_listings_count': ['160'], 'availability_365': [ '365'], 'number_of_reviews_ltm': ['0']}
 
+def test_clasif_props():
+    lista1=["Entire home/apt", "Private room"]
+    dicc1= {"room_type":["Entire home/apt", "shared room", "Entire home/apt"], "latitude":[120, 300, 40], "longitude":[500, -100, 30]}
+    dicc2= {"room_type":["shared room", "shared room", "Hotel room"], "latitude":[120, 300, 40], "longitude":[500, -100, 30]}
+
+    assert clasif_props(lista1, dicc1) == {"latitude":[120, 40], "longitude":[500, 30]}
+    assert clasif_props(lista1, dicc2) == {"latitude":[], "longitude":[]}
+
 def test_cont_vecindarios():
 
     lista_prueba1=["Copacabana", "Copacabana", "Copacabana", "Centro"]
