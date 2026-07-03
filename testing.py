@@ -3,10 +3,9 @@ from proyecto import *
 
 def test_habitac_alquiladas():
 
-    dicc_prueba1={"room_type":["Entire home/apt","Entire home/apt","Entire home/apt"]}
-    dicc_prueba2={"room_type":["Entire home/apt","Private room","Shared room","Hotel room"]}
-    dicc_prueba3={"room_type":[]}
-
+    lista_prueba1=["Entire home/apt","Entire home/apt","Entire home/apt"]
+    lista_prueba2=["Entire home/apt","Private room","Shared room","Hotel room"]
+    lista_prueba3=[]
     assert habitac_alquiladas(dicc_prueba1) == {"Entire home/apt":3, "Private room":0, "Shared room":0, "Hotel room":0}
     assert habitac_alquiladas(dicc_prueba2) == {"Entire home/apt":1, "Private room":1, "Shared room":1, "Hotel room":1}
     assert habitac_alquiladas(dicc_prueba3) == {"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}
@@ -27,3 +26,17 @@ def test_precios():
     dicc3={"price":[]}
 
     assert precios(1000, dicc1) == {'id': [ '6'], 'name': ['Rio'], 'host_id': ['475'], 'host_name': ['Renato Silva Vianna'], 'neighbourhood_group': ['', '', ''], 'neighbourhood': ['Jacarepaguá'], 'latitude': ['-22.97187'], 'longitude': ['-43.41419'], 'room_type': ['Entire home/apt',], 'price': ['665.0'], 'minimum_nights': ['1'], 'number_of_reviews': ['0'], 'last_review': [''], 'reviews_per_month': [''], 'calculated_host_listings_count': ['160'], 'availability_365': [ '365'], 'number_of_reviews_ltm': ['0'], 'license\n': []}
+    assert habitac_alquiladas(lista_prueba1) == {"Entire home/apt":3, "Private room":0, "Shared room":0, "Hotel room":0}
+    assert habitac_alquiladas(lista_prueba2) == {"Entire home/apt":1, "Private room":1, "Shared room":1, "Hotel room":1}
+    assert habitac_alquiladas(lista_prueba3) == {"Entire home/apt":0, "Private room":0, "Shared room":0, "Hotel room":0}
+
+def test_cont_vecindarios():
+
+    lista_prueba1=["Copacabana", "Copacabana", "Copacabana", "Centro"]
+    lista_prueba2=["Copacabana"]
+    lista_prueba3=["Copacabana"]
+
+    assert cont_vecindarios(lista_prueba1) == {"Copacabana": 3, "Centro": 1}
+    assert cont_vecindarios(lista_prueba2) == {"Copacabana": 1}
+    assert cont_vecindarios(lista_prueba3) == {"Copacabana": 1}
+
