@@ -235,8 +235,8 @@ def main():
 
     with open("dataset_airbnb.csv") as f:
         tabla = procesam_dataset(f)
-    source = habitac_alquiladas(tabla["room_type"])
 
+    source = habitac_alquiladas(tabla["room_type"])
     # Grafica de barras de las habitaciones alquiladas
     fig, ax = plt.subplots()
     bar_labels = source.keys()
@@ -252,8 +252,8 @@ def main():
     valor = st.slider("Minimo de noches que buscan alquilar", min_value=1, 
     max_value=50, value=1)
     dicc_noches=Noches(valor, tabla)
+    
     st.map(data=dicc_noches, latitude="latitude", longitude="longitude", zoom=11)
-
     # Checkbox para elegir el tipo de propiedad buscada y mapa que muestra los 
     #alquileres
     # "Entire home/apt"  | "Private room" | "Shared room" | "Hotel room"
@@ -298,7 +298,6 @@ def main():
         subtabla[k] = valores_recortados
     st.table(subtabla, border="horizontal")
 
-
     # Grafica de torta de cont_vecindarios
     vecindarios=cont_vecindarios(tabla["neighbourhood"])
     fig, ax = plt.subplots()
@@ -308,6 +307,10 @@ def main():
     ax.axis('equal')
     ax.set_title('Cantidad de valores por vecindario')
     st.pyplot(fig)
+
+    #entrada de fecha para las busqueda de las reseñas
+    d= st.date_input("fecha de la ultima reseña")
+
 
     return 0
 main()
