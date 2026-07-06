@@ -78,6 +78,18 @@ def habitac_alquiladas(lista_habitaciones:list)->dict:
     return dicc_habita
 
 def indice_alquiler(key:str, lista:list, num:int):
+    """indice_alquiler toma una key de un diccionario de listas
+    la lista que corresponde a esa key y un parametro que es num
+    indice_alquiler-> str, list, int
+    la funcion indice_alquiler devuelve una lista donde cada elemento es un entero
+    que representa la posicion de un elemento de la lista del diccionario que 
+    cumpla las condiciones dadas en cada caso respecto de num
+    Ejemplos
+        ->indice_alquiler("price", [200, 3000, 40, 100], 200)==
+        [0,2,3]
+        ->indice_alquiler("minimum_nights", [1, 3, 5, 2], 3)==
+        [1,2]
+    """
     lista_indice=[]
     i=0
     #num sera un parametro que usa la funcion para recibir datos
@@ -90,7 +102,7 @@ def indice_alquiler(key:str, lista:list, num:int):
             i+=1
     elif key=="minimum_nights":
         for noches in lista:
-            if int(noches)<=num:
+            if int(noches)>=num:
                lista_indice.append(i)
             i+=1
     return lista_indice
@@ -99,13 +111,13 @@ def indice_alquiler(key:str, lista:list, num:int):
 
 # PREGUNTA: ¿Que alquileres tienen disponibles una cierta cantidad minima de noches?
 def Noches(cant_noches:int, dataset:dict)->dict:
-    """Noches-> int, Dict{str:list[str]}
-    Noches recibe el numero que llega por el slider y recorre la seccion de 
-    minimum_nigths del diccionario que representa el dataset, de ahi busca
-    cuando el numero del slider coincide con la value guarda un indice en 
-    una lista que seria el numero del airbnb que se esta guardando. Luego 
-    recorre esa lista accediendo a la latitud y longitud de cada airbnb guardado 
-    con su posicion para guardarlas en otro diccionario el cual sera returneado"""
+    """
+    Esta funcion representa la cantidad minima de noches que se busca
+    como un entero
+    Noches-> int, Dict{str:list[str]}
+    toma una cantidad de noches y guarda las longitud y latitud de todos
+    los airbnb que tengan como minimo de noches una cantidad mayor o igual
+    a la cantidad de noches ingresada por el usuario"""
     dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
 
