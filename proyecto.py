@@ -76,12 +76,16 @@ def habitac_alquiladas(lista_habitaciones:list)->dict:
         dicc_habita[habitaciones]+=1
 
     return dicc_habita
-def indice_alquiler(key:str, lista:list):
+
+def indice_alquiler(key:str, lista:list, num:int):
     lista_indice=[]
     i=0
+    #num sera un parametro que usa la funcion para recibir datos
+    #int o float para asi poder recibir datos como la cantidad minima
+    #de noches o el precio maximo
     if key=="price":
         for precio in lista:
-            if precio and float(precio)<=float(precio_max):
+            if precio and float(precio)<=float(num):
                 lista_indice.append(i)
             i+=1
     elif key=="minimum_nights":
@@ -94,7 +98,7 @@ def indice_alquiler(key:str, lista:list):
 
 
 # PREGUNTA: ¿Que alquileres tienen disponibles una cierta cantidad minima de noches?
-def Noches(num:int, dataset:dict)->dict:
+def Noches(cant_noches:int, dataset:dict)->dict:
     """Noches-> int, Dict{str:list[str]}
     Noches recibe el numero que llega por el slider y recorre la seccion de 
     minimum_nigths del diccionario que representa el dataset, de ahi busca
@@ -104,12 +108,11 @@ def Noches(num:int, dataset:dict)->dict:
     con su posicion para guardarlas en otro diccionario el cual sera returneado"""
     dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
-    num=num
 
-    index_de_alquiler=indice_alquiler("minimum_nights", dataset["minimum_nights"])
+    index_de_alquiler=indice_alquiler("minimum_nights", dataset["minimum_nights"], cant_noches)
     #i=0
     # for noches in dataset["minimum_nights"]:
-    #     if int(noches)<=num:
+    #     if int(noches)<=cant_noches:
     #         index_de_alquiler.append(i)
     #     i+=1
     
@@ -142,7 +145,7 @@ def precios(precio_max:int, tabla:dict):
     #     if precio and float(precio)<=float(precio_max):
     #         index_de_alquiler.append(i)
     #     i+=1
-    index_de_alquiler=indice_alquiler("price", tabla["price"])
+    index_de_alquiler=indice_alquiler("price", tabla["price"], precio_max)
     # formo el diccionario con todos los airbnb que cumplen la condicion
     for index in index_de_alquiler:
         for llave in tabla:
