@@ -343,11 +343,11 @@ def main():
     st.pyplot(fig)
 
     #entrada de fecha actual y el lapso de tiempo que se desea abarcar
-    st.write("partiendo desde 2025/12/30")
+    fecha="2025/09/20"
+    st.write("partiendo desde", fecha)
     Intervalo= st.radio(
     "Tiempo desde la ultima reseña",
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
-    fecha="2025/09/30"
     dicc_review=ultima_review(fecha, Intervalo, tabla)
     st.map(data=dicc_review, latitude="latitude", longitude="longitude", zoom=11)
 
