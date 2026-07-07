@@ -344,12 +344,12 @@ def main():
     #entrada de fecha actual y el lapso de tiempo que se desea abarcar
     fecha = st.date_input("introducir fecha actual") 
     fecha_str = fecha.strftime("%Y/%m/%d")
-    st.write(fecha_str)
     Intervalo= st.radio(
     "Tiempo desde la ultima reseña",
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
     
     dicc_review=ultima_review(fecha_str, Intervalo, tabla)
+    st.write(fecha_str)
     st.map(data=dicc_review, latitude="latitude", longitude="longitude", zoom=11)
 
     return 0
