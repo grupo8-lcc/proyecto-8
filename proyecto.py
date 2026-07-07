@@ -215,46 +215,35 @@ def clasif_props(tipo_de_prop:list[str], dataset:dict)->dict:
             dicc_alq_filtrados["longitude"].append(float(dataset["longitude"][ind_p])) 
     return dicc_alq_filtrados
 
-def fecha_valida(mes, mes_review, mes_intervalo, año, año_review, año_intervalo):
-    return  (año_review > año_intervalo or 
-            (año_review == año_intervalo and mes_review >= mes_intervalo)) \
-            and (año_review < año or 
-            (año_review == año and mes_review <= mes))
+def fecha_valida(mes, mes_review, año, año_review, intervalo):
+    # Calcular diferencia en meses entre la fecha actual y la reseña
+    diferencia_meses = (año - año_review) * 12 + (mes - mes_review)
+
+    if intervalo == "hace un mes":
+        return diferencia_meses == 1
+    elif intervalo == "ultimos 3 meses":
+        return 0 <= diferencia_meses <= 3
+    elif intervalo == "ultimos 6 meses":
+        return 0 <= diferencia_meses <= 6
+    elif intervalo == "menos de un mes":
+        return diferencia_meses == 0
+    else:
+        return False
 
 def ultima_review(fecha:str, intervalo:str, tabla:dict):
-    partes_fecha=fecha.split("/")
-    mes=int(partes_fecha[1])
-    año=int(partes_fecha[0])
-    mes_intervalo=mes
+    partes_fecha = fecha.split("/")
+    año = int(partes_fecha[0])
+    mes = int(partes_fecha[1])
 
-    dicc_alquileres={"latitude":[], "longitude":[]}
-    index_de_alquiler=[]
-    if intervalo=="ultimos 3 meses":
-        mes_intervalo=mes-3
-    elif intervalo=="hace un mes":
-        mes_intervalo=mes-1
-    elif intervalo=="ultimos 6 meses":
-        mes_intervalo=mes-6
-    
-    if mes_intervalo<=0:
-        mes_intervalo=mes_intervalo+12
-        año_intervalo=año-1
-    else:
-        año_intervalo=año
+    dicc_alquileres = {"latitude":[], "longitude":[]}
 
-    i=0
-    for fechas in tabla["last_review"]:
+    for i, fechas in enumerate(tabla["last_review"]):
         if fechas:
-            mes_review=int(fechas[5:7])
-            año_review=int(fechas[:4])
-            if fecha_valida(mes, mes_review, mes_intervalo, año, año_review,
-                año_intervalo):
-               index_de_alquiler.append(i)
-        i=i+1
-    
-    for indice in index_de_alquiler:
-        dicc_alquileres["latitude"].append(float(tabla["latitude"][indice]))
-        dicc_alquileres["longitude"].append(float(tabla["longitude"][indice]))
+            año_review = int(fechas[:4])
+            mes_review = int(fechas[5:7])
+            if fecha_valida(mes, mes_review, año, año_review, intervalo):
+                dicc_alquileres["latitude"].append(float(tabla["latitude"][i]))
+                dicc_alquileres["longitude"].append(float(tabla["longitude"][i]))
 
     return dicc_alquileres
 
