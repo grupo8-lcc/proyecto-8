@@ -346,7 +346,7 @@ def main():
     "Tiempo desde la ultima reseña",
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
     
-    dicc_review=ultima_review(fecha, intervalo, tabla)
+    dicc_review=ultima_review(fecha, Intervalo, tabla)
     st.map(data=dicc_review, latitude="latitude", longitude="longitude", zoom=11)
 
     return 0
