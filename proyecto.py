@@ -215,10 +215,17 @@ def clasif_props(tipo_de_prop:list[str], dataset:dict)->dict:
             dicc_alq_filtrados["longitude"].append(float(dataset["longitude"][ind_p])) 
     return dicc_alq_filtrados
 
-def ultima_review(fecha:str, intervalo:str, tabla:dict):
-    mes=int(fecha[5:8])
-    año=int(fecha[:5])
+def fecha_valida(mes, mes_review, mes_intervalo, año, año_review, año_intervalo):
+    return  (año_review > año_intervalo or 
+            (año_review == año_intervalo and mes_review >= mes_intervalo)) \
+            and (año_review < año or 
+            (año_review == año and mes_review <= mes))
 
+def ultima_review(fecha:str, intervalo:str, tabla:dict):
+    mes=int(fecha[5:7])
+    año=int(fecha[:4])
+
+    dicc_alquileres={"latitude"=[], "longitude"=[]}
     index_de_alquiler=[]
     if intervalo=="ultimos 3 meses":
         mes_intervalo=mes-3
@@ -236,14 +243,17 @@ def ultima_review(fecha:str, intervalo:str, tabla:dict):
     i=0
     for fechas in tabla["last_review"]:
         if fechas:
-            mes_review=int(fechas[5:8])
-            año_review=int(fechas[:5])
-            if año<=año_review and año_review<=año_intervalo:
-                index_de_alquiler.append(i)
-            elif mes<=mes_review and mes_review<=mes_intervalo:
-                index_de_alquiler.append(i)
+            mes_review=int(fechas[5:7])
+            año_review=int(fechas[:4])
+            if fecha_valida(mes, mes_review, mes_intervalo, año, año_review,
+                año_intervalo):
+               index_de_alquiler.append(i)
+    
+    for indice in index_de_alquiler:
+        dicc_alquileres["latitude"].append(float(tabla["latitude"][indice]))
+        dicc_alquileres["longitude"].append(float(tabla["longitude"][indice]))
 
-
+    return dicc_alquileres
 
 
 
@@ -335,7 +345,9 @@ def main():
     Intervalo= st.radio(
     "Tiempo desde la ultima reseña",
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
-
+    
+    dicc_review=ultima_review(fecha, intervalo, tabla)
+    st.map(data=dicc_review, latitude="latitude", longitude="longitude", zoom=11)
 
     return 0
 main()
