@@ -344,6 +344,7 @@ def main():
 
     #entrada de fecha actual y el lapso de tiempo que se desea abarcar
     fecha = "2025/09/07"
+    st.write("medimos a partir de", fecha)
     Intervalo= st.radio(
     "Tiempo desde la ultima reseña",
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
