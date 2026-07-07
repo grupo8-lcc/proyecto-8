@@ -349,7 +349,6 @@ def main():
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
     
     dicc_review=ultima_review(fecha_str, Intervalo, tabla)
-    st.write(dicc_review)
     st.map(data=dicc_review, latitude="latitude", longitude="longitude", zoom=11)
 
     return 0
