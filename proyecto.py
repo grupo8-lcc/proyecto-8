@@ -222,7 +222,7 @@ def fecha_valida(mes, mes_review, mes_intervalo, año, año_review, año_interva
             (año_review == año and mes_review <= mes))
 
 def ultima_review(fecha:str, intervalo:str, tabla:dict):
-    mes=int(fecha[5:7])
+    mes=int(fecha[5:8])
     año=int(fecha[:4])
 
     dicc_alquileres={"latitude":[], "longitude":[]}
