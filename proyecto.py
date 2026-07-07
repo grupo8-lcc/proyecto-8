@@ -250,6 +250,7 @@ def ultima_review(fecha:str, intervalo:str, tabla:dict):
             if fecha_valida(mes, mes_review, mes_intervalo, año, año_review,
                 año_intervalo):
                index_de_alquiler.append(i)
+        i=i+1
     
     for indice in index_de_alquiler:
         dicc_alquileres["latitude"].append(float(tabla["latitude"][indice]))
