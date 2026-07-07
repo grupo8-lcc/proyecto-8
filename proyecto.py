@@ -344,6 +344,7 @@ def main():
     #entrada de fecha actual y el lapso de tiempo que se desea abarcar
     fecha = st.date_input("introducir fecha actual") 
     fecha_str = fecha.strftime("%Y/%m/%d")
+    str.write(fecha_str)
     Intervalo= st.radio(
     "Tiempo desde la ultima reseña",
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
