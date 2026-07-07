@@ -36,23 +36,6 @@ def procesam_dataset(f):
         # agrega los datos al diccionario 
         for x in range(0,long):
             tabla[lista_indice[x]].append(lista_datos[x])
-    # intento fallido de lectura del dataset sin bibliotecas
-    # for linea in f:
-    #     #para armar la linea en caso que este dividida en distintas filas
-    #     while linea[-2]!="," and linea[-1]=="\n":
-    #         linea=linea+f.readline()
-    #         print(linea)
-    #     #para ignorar las comas en caso que un nombre tenga una coma
-    #     primer_comilla=linea.find('"')
-    #     fin_comilla=linea.find('"', primer_comilla+1)
-    #     if primer_comilla!=-1 and fin_comilla!=-1:
-    #         nombre=linea[primer_comilla+1:fin_comilla]
-    #         nombre=nombre.replace(",","")
-    #         linea=linea[:primer_comilla+1]+nombre+linea[fin_comilla:]
-    #     lista_datos=linea.split(",")
-    #     #agrega los datos al diccionario 
-    #     for x in range(0,long):
-    #         tabla[lista_indice[x]].append(lista_datos[x])
     return tabla
 
 # PREGUNTA ESTATICA A RESOLVER: ¿QUE TIPOS DE HABITACIONES SON LAS MAS ALQUILADAS?
