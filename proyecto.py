@@ -120,13 +120,7 @@ def Noches(cant_noches:int, dataset:dict)->dict:
     a la cantidad de noches ingresada por el usuario"""
     dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
-
     index_de_alquiler=indice_alquiler("minimum_nights", dataset["minimum_nights"], cant_noches)
-    #i=0
-    # for noches in dataset["minimum_nights"]:
-    #     if int(noches)<=cant_noches:
-    #         index_de_alquiler.append(i)
-    #     i+=1
     
     for x in index_de_alquiler:
         dicc_alquileres["latitude"].append(float(dataset["latitude"][x]))
@@ -152,11 +146,6 @@ def precios(precio_max:int, tabla:dict):
         airbnbs[llave]=[]
     # guardo el indice de cada airbnb en el dataset que cumple lo que necesito
     index_de_alquiler=[]
-    # i=0
-    # for precio in tabla["price"]:
-    #     if precio and float(precio)<=float(precio_max):
-    #         index_de_alquiler.append(i)
-    #     i+=1
     index_de_alquiler=indice_alquiler("price", tabla["price"], precio_max)
     # formo el diccionario con todos los airbnb que cumplen la condicion
     for index in index_de_alquiler:
@@ -225,6 +214,38 @@ def clasif_props(tipo_de_prop:list[str], dataset:dict)->dict:
             dicc_alq_filtrados["latitude"].append(float(dataset["latitude"][ind_p]))
             dicc_alq_filtrados["longitude"].append(float(dataset["longitude"][ind_p])) 
     return dicc_alq_filtrados
+
+def ultima_review(fecha:str, intervalo:str, tabla:dict):
+    mes=int(fecha[5:8])
+    año=int(fecha[:5])
+
+    index_de_alquiler=[]
+    if intervalo=="ultimos 3 meses":
+        mes_intervalo=mes-3
+    elif intervalo=="hace un mes":
+        mes_intervalo=mes-1
+    elif intervalo=="ultimos 6 meses":
+        mes_intervalo=mes-6
+    
+    if mes_intervalo<=0:
+        mes_intervalo=mes_intervalo+12
+        año_intervalo=año-1
+    else:
+        año_intervalo=año
+
+    i=0
+    for fechas in tabla["last_review"]:
+        if fechas:
+            mes_review=int(fechas[5:8])
+            año_review=int(fechas[:5])
+            if año<=año_review and año_review<=año_intervalo:
+                index_de_alquiler.append(i)
+            elif mes<=mes_review and mes_review<=mes_intervalo:
+                index_de_alquiler.append(i)
+
+
+
+
 
 #dataset_airbnb.csv
 # Funcion Principal:
@@ -308,8 +329,12 @@ def main():
     ax.set_title('Cantidad de valores por vecindario')
     st.pyplot(fig)
 
-    #entrada de fecha para las busqueda de las reseñas
-    d= st.date_input("fecha de la ultima reseña")
+    #entrada de fecha actual y el lapso de tiempo que se desea abarcar
+    fecha = st.date_input("introducir fecha actual") 
+
+    Intervalo= st.radio(
+    "Tiempo desde la ultima reseña",
+    ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
 
 
     return 0
