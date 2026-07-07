@@ -215,8 +215,23 @@ def clasif_props(tipo_de_prop:list[str], dataset:dict)->dict:
             dicc_alq_filtrados["longitude"].append(float(dataset["longitude"][ind_p])) 
     return dicc_alq_filtrados
 
+#funcion auxiliar
 def fecha_valida(mes, mes_review, año, año_review, intervalo):
-    # Calcular diferencia en meses entre la fecha actual y la reseña
+    """la funcion toma mes y año que son representadas como int
+    mes_review y año_review son representados como int tambien 
+    intervalo es un string
+    fecha_valida= int, int, int, int, str->bool
+    la funcion toma el mes y año de una fecha de partida y el mes y año
+    de otra fecha con la que se va a comparar. Convierte los años a meses
+    y calcula la diferencia de meses entre ambas fechas luego segun
+    el intervalo determina si es verdadero o falso
+    Ejemplo:
+    fecha_valida(9, 3, 2026, 2026, "hace un mes")== False
+    fecha_valida(9, 8, 2026, 2026, "hace un mes")== True
+    fecha_valida(9, 8, 2026, 2025, "ultimos 3 meses")== False
+    fecha_valida(5, 12, 2026, 2025, "ultimos 6 meses")== True"""
+    # Calcular diferencia en meses entre la fecha actual y
+    #la fecha de la ultima reseña
     diferencia_meses = (año - año_review) * 12 + (mes - mes_review)
 
     if intervalo == "hace un mes":
@@ -227,10 +242,20 @@ def fecha_valida(mes, mes_review, año, año_review, intervalo):
         return 0 <= diferencia_meses <= 6
     elif intervalo == "menos de un mes":
         return diferencia_meses == 0
-    else:
-        return False
 
+#respues a la pregunta 
 def ultima_review(fecha:str, intervalo:str, tabla:dict):
+    """esta funcion toma una fecha que sera representada con un string,
+    un intervalo de tiempo que tambien sera representado con un string
+    un dataset que sera representado con un diccionario de lista
+    ultima_review=str, str, dict{str:list[]}->dict{str: list[float]}
+    la funcion ultima_review toma una fecha como punto de partida y un intervalo
+    de tiempo(ultimos 3 mese, menos de un mes, etc) dado, luego busca en el dataset
+    todos los airbnb cuya ultima reseña tenga fecha entre la fecha de partida y
+    el intervalo seleccionado, asi guarda en un diccionario la longitud
+    y latitud de todos los airbnb que cumplan con esa condicion
+    Ejemplos:
+    """
     partes_fecha = fecha.split("/")
     año = int(partes_fecha[0])
     mes = int(partes_fecha[1])
@@ -246,8 +271,6 @@ def ultima_review(fecha:str, intervalo:str, tabla:dict):
                 dicc_alquileres["longitude"].append(float(tabla["longitude"][i]))
 
     return dicc_alquileres
-
-
 
 #dataset_airbnb.csv
 # Funcion Principal:
