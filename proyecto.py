@@ -350,7 +350,7 @@ def main():
     ["menos de un mes", "hace un mes", "ultimos 3 meses", "ultimos 6 meses"],)
     
     dicc_review=ultima_review(fecha_str, Intervalo, tabla)
-    if len(dicc["latitude"]) == 0:
+    if len(dicc_review["latitude"]) == 0:
         st.map({"latitude":[], "longitude":[]})
     else:
         st.map(data=dicc_review, latitude="latitude", longitude="longitude", zoom=11)
