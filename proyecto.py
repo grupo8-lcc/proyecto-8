@@ -225,7 +225,7 @@ def ultima_review(fecha:str, intervalo:str, tabla:dict):
     mes=int(fecha[5:7])
     año=int(fecha[:4])
 
-    dicc_alquileres={"latitude"=[], "longitude"=[]}
+    dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
     if intervalo=="ultimos 3 meses":
         mes_intervalo=mes-3
