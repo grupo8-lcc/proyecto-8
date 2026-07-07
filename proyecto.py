@@ -225,6 +225,7 @@ def ultima_review(fecha:str, intervalo:str, tabla:dict):
     partes_fecha=fecha.split("/")
     mes=int(partes_fecha[1])
     año=int(partes_fecha[0])
+    mes_intervalo=mes
 
     dicc_alquileres={"latitude":[], "longitude":[]}
     index_de_alquiler=[]
