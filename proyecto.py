@@ -351,7 +351,7 @@ def main():
     
     dicc_review=ultima_review(fecha_str, Intervalo, tabla)
     if len(dicc_review["latitude"]) == 0:
-        st.map({"latitude":[], "longitude":[]})
+        st.map(data={"latitude":[], "longitude":[]}, latitude="latitude", longitude="longitude", zoom=11)
     else:
         st.map(data=dicc_review, latitude="latitude", longitude="longitude", zoom=11)
 
