@@ -26,9 +26,9 @@ def test_Noches():
     dicc2={"latitude":[120, 300, 40], "longitude":[500, -100, 30], "minimum_nights":[5, 3, 1]}
     dicc3={"latitude":[], "longitude":[], "minimum_nights":[]}
     
-    assert Noches(3, dicc1) == {"latitude":[120, 300], "longitude":[500, -100]}
-    assert Noches(3, dicc2) == {"latitude":[300, 40], "longitude":[-100, 30]}
-    assert Noches(1, dicc1) == {"latitude":[], "longitude":[]}
+    assert Noches(3, dicc1) == {"latitude":[300, 40], "longitude":[-100, 30]}
+    assert Noches(3, dicc2) == {"latitude":[120, 300], "longitude":[500, -100]}
+    assert Noches(7, dicc1) == {"latitude":[], "longitude":[]}
     assert Noches(20, dicc3) == {"latitude":[], "longitude":[]}
 
 def test_precios():
