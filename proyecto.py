@@ -153,7 +153,7 @@ def cont_vecindarios(lista_vecindarios:list)->dict:
     cont_vecindario(["Copacabana"]) == {"Copacabana":1}
     """  
     
-    dicc_vecindarios={"Otros":0}
+    dicc_vecindarios={}
     cant_vecin=0
     for vecindarios in lista_vecindarios:
         if vecindarios in dicc_vecindarios:
@@ -162,13 +162,13 @@ def cont_vecindarios(lista_vecindarios:list)->dict:
             dicc_vecindarios[vecindarios]=1
         cant_vecin+=1
     
+    dicc_vecindarios_filtrado={"Otros":0}
     for vecin in dicc_vecindarios:
         porcentaje=(dicc_vecindarios[vecin]/cant_vecin)*100
         if porcentaje<= 5.0:
-            dicc_vecindarios["Otros"]+=dicc_vecindarios[vecin]
-            del dicc_vecindarios[vecin]
+            dicc_vecindarios_filtrado["Otros"]+=dicc_vecindarios[vecin]
 
-    return dicc_vecindarios
+    return dicc_vecindarios_filtrado
 
 # PREGUNTA: ¿Cuales alquileres son de determinado tipo de establecimiento?
 def clasif_props(tipo_de_prop:list[str], dataset:dict)->dict:
