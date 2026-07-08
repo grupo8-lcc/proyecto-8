@@ -39,9 +39,12 @@ def test_cont_vecindarios():
 
     lista_prueba1=["Copacabana", "Copacabana", "Copacabana", "Centro"]
     lista_prueba2=["Copacabana"]
-    lista_prueba3=["Copacabana"]
 
     assert cont_vecindarios(lista_prueba1) == {"Copacabana": 3, "Centro": 1}
     assert cont_vecindarios(lista_prueba2) == {"Copacabana": 1}
-    assert cont_vecindarios(lista_prueba3) == {"Copacabana": 1}
+
+def test_fecha_valida():
+    assert fecha_valida(9, 3, 2026, 2026, "hace un mes") == False
+    assert fecha_valida(9, 8, 2026, 2026, "hace un mes")== True
+    
 

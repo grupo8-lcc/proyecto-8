@@ -233,7 +233,7 @@ def ultima_review(fecha:str, intervalo:str, tabla:dict):
     un dataset que sera representado con un diccionario de lista
     ultima_review=str, str, dict{str:list[]}->dict{str: list[float]}
     la funcion ultima_review toma una fecha como punto de partida y un intervalo
-    de tiempo(ultimos 3 mese, menos de un mes, etc) dado, luego busca en el dataset
+    de tiempo(ultimos 3 meses, menos de un mes, etc) dado, luego busca en el dataset
     todos los airbnb cuya ultima reseña tenga fecha entre la fecha de partida y
     el intervalo seleccionado, asi guarda en un diccionario la longitud
     y latitud de todos los airbnb que cumplan con esa condicion
