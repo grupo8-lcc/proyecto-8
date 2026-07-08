@@ -153,7 +153,7 @@ def cont_vecindarios(lista_vecindarios:list)->dict:
     cont_vecindario(["Copacabana"]) == {"Copacabana":1}
     """  
     
-    dicc_vecindarios={"Otros"=0}
+    dicc_vecindarios={"Otros":0}
 
     for vecindarios in lista_vecindarios:
         if vecindarios in dicc_vecindarios:
