@@ -229,7 +229,7 @@ def fecha_valida(mes, mes_review, año, año_review, intervalo):
 #respues a la pregunta 
 def ultima_review(fecha:str, intervalo:str, tabla:dict):
     """esta funcion toma una fecha que sera representada con un string,
-    un intervalo de tiempo que tambien sera representado con un string
+    un intervalo de tiempo que tambien sera representado con un string,
     un dataset que sera representado con un diccionario de lista
     ultima_review=str, str, dict{str:list[]}->dict{str: list[float]}
     la funcion ultima_review toma una fecha como punto de partida y un intervalo

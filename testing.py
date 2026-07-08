@@ -59,5 +59,8 @@ def test_fecha_valida():
     assert fecha_valida(9, 8, 2026, 2025, "ultimos 3 meses")== False
     assert fecha_valida(5, 12, 2026, 2025, "ultimos 6 meses")== True
 
-#def test_ultima_review():
+def test_ultima_review():
+    dicc1={"last_review":["2023-09-23"], "latitude":"88998", "longitude":"89090"}
+
+    assert ultima_review("2025/07/03", "hace un mes", dicc1) == {"latitude":[], "longitude":[]}
     
