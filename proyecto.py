@@ -147,7 +147,8 @@ def cont_vecindarios(lista_vecindarios:list)->dict:
     cont_vecindarios: List(Str) -> Dict(str:Int)
     cont_vecindarios recibe la lista del dataset de los vecindarios de cada 
     airbnb y devuelve un diccionario, cuyo key es cada vecindario y cada value 
-    es un contador de apariciones de dicho vecindario.
+    es un contador de apariciones de dicho vecindario. Si el porcentaje
+    es menor a cierto porcentaje se mostrara como "Otros"
     EJEMPLO:
     cont_vecindario(["Copacabana", "Copacabana", "Copacabana", "Centro"]) == {"Copacabana":3,"Centro":1}
     cont_vecindario(["Copacabana"]) == {"Copacabana":1}

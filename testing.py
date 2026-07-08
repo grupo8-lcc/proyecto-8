@@ -41,9 +41,13 @@ def test_cont_vecindarios():
 
     lista_prueba1=["Copacabana", "Copacabana", "Copacabana", "Centro"]
     lista_prueba2=["Copacabana"]
+    lista_prueba3=["Copacabana", "Copacabana", "Copacabana", "Centro"]
+    for x in range(0,100):
+        lista_prueba3=lista_prueba3+["Copacabana"]
 
-    assert cont_vecindarios(lista_prueba1) == {"Copacabana": 3, "Centro": 1}
-    assert cont_vecindarios(lista_prueba2) == {"Copacabana": 1}
+    assert cont_vecindarios(lista_prueba1) == {"Copacabana": 3, "Centro": 1, "Otros":0}
+    assert cont_vecindarios(lista_prueba2) == {"Copacabana": 1, "Otros":0}
+    assert cont_vecindarios(lista_prueba3) == {"Copacabana": 103, "Otros":1}
 
 def test_clasif_props():
     lista1=["Entire home/apt", "Private room"]
