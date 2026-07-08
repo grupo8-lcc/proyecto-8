@@ -165,7 +165,7 @@ def cont_vecindarios(lista_vecindarios:list)->dict:
     dicc_vecindarios_filtrado={"Otros":0}
     for vecin in dicc_vecindarios:
         porcentaje=(dicc_vecindarios[vecin]/cant_vecin)*100
-        if porcentaje<= 3.0:
+        if porcentaje<= 2.0:
             dicc_vecindarios_filtrado["Otros"]+=dicc_vecindarios[vecin]
         else:
             dicc_vecindarios_filtrado[vecin]=dicc_vecindarios[vecin]
