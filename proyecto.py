@@ -217,7 +217,8 @@ def fecha_valida(mes, mes_review, año, año_review, intervalo):
     fecha_valida= int, int, int, int, str->bool
     la funcion toma el mes y año de una fecha de partida y el mes y año
     de otra fecha con la que se va a comparar. Convierte los años a meses
-    y calcula la diferencia de meses entre ambas fechas luego segun
+    luego esa diferencia de meses la pasa al equivalente en dia y
+    calcula la diferencia de meses entre ambas fechas luego segun
     el intervalo determina si es verdadero o falso
     Ejemplo:
     fecha_valida(9, 3, 2026, 2026, "hace un mes")== False
@@ -227,15 +228,16 @@ def fecha_valida(mes, mes_review, año, año_review, intervalo):
     # Calcular diferencia en meses entre la fecha actual y
     #la fecha de la ultima reseña
     diferencia_meses = (año - año_review) * 12 + (mes - mes_review)
+    diferencia_dias=diferencia_meses*30
 
     if intervalo == "hace un mes":
-        return diferencia_meses <= 1
+        return diferencia_dias <= 30
     elif intervalo == "ultimos 3 meses":
-        return 0 <= diferencia_meses <= 3
+        return 0 <= diferencia_dias <= 90
     elif intervalo == "ultimos 6 meses":
-        return 0 <= diferencia_meses <= 6
+        return 0 <= diferencia_dias <= 180
     elif intervalo == "menos de un mes":
-        return diferencia_meses == 0
+        return diferencia_dias <= 30
 
 #respues a la pregunta 
 def ultima_review(fecha:str, intervalo:str, tabla:dict):
