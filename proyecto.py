@@ -337,7 +337,6 @@ def main():
     ax.set_title('Cantidad de valores por vecindario')
     
     st.pyplot(fig)
-    nuevo_valor= vecindarios["Camorim"]
     st.write (nuevo_valor)
 
     #entrada de fecha actual y el lapso de tiempo que se desea abarcar
