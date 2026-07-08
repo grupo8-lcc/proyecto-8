@@ -229,7 +229,7 @@ def fecha_valida(mes, mes_review, año, año_review, intervalo):
     diferencia_meses = (año - año_review) * 12 + (mes - mes_review)
 
     if intervalo == "hace un mes":
-        return diferencia_meses == 1
+        return diferencia_meses <= 1
     elif intervalo == "ultimos 3 meses":
         return 0 <= diferencia_meses <= 3
     elif intervalo == "ultimos 6 meses":
@@ -250,9 +250,8 @@ def ultima_review(fecha:str, intervalo:str, tabla:dict):
     y latitud de todos los airbnb que cumplan con esa condicion
     Ejemplos:
     """
-    partes_fecha = fecha.split("/")
-    año = int(partes_fecha[0])
-    mes = int(partes_fecha[1])
+    año = int(fecha[:4])
+    mes = int(fecha[5:7])
 
     dicc_alquileres = {"latitude":[], "longitude":[]}
 
