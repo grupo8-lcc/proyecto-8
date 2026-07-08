@@ -46,5 +46,6 @@ def test_cont_vecindarios():
 def test_fecha_valida():
     assert fecha_valida(9, 3, 2026, 2026, "hace un mes") == False
     assert fecha_valida(9, 8, 2026, 2026, "hace un mes")== True
-    
+    assert fecha_valida(9, 8, 2026, 2025, "ultimos 3 meses")== False
+    assert fecha_valida(5, 12, 2026, 2025, "ultimos 6 meses")== True
 
