@@ -335,9 +335,10 @@ def main():
     fig.tight_layout()
     ax.axis('equal')
     ax.set_title('Cantidad de valores por vecindario')
-    valoooor=vecindario["Camorim"]
-    ax.set_title(valoooor)
+    
     st.pyplot(fig)
+    nuevo_valor= vecindarios["Camorim"]
+    st.write (nuevo_valor)
 
     #entrada de fecha actual y el lapso de tiempo que se desea abarcar
     fecha = "2025/09/07"
