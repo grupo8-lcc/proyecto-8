@@ -162,7 +162,7 @@ def cont_vecindarios(lista_vecindarios:list)->dict:
             dicc_vecindarios[vecindarios]=1
     
     for vecindarios in dicc_vecindarios:
-        if dicc_vecindarios[vecindarios]<=1000:
+        if dicc_vecindarios[vecindarios]<=5000:
             dicc_vecindarios["Otros"]+=dicc_vecindarios[vecindarios]
 
 
